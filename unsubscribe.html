@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe — Unity Ads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{ --purple:#7b2ff7; --pink:#f72f9e; --text:#1a1a2e; --muted:#6b6b80; --border:#e8e3f5; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family:'Inter',Helvetica,Arial,sans-serif;
+      background:#faf8f3; color:var(--text);
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:24px; -webkit-font-smoothing:antialiased;
+    }
+    .card{
+      width:100%; max-width:480px; background:#fff; border:1px solid var(--border);
+      border-radius:24px; padding:44px 40px;
+      box-shadow:0 30px 70px -34px rgba(123,47,247,0.35);
+    }
+    .logo{ display:flex; align-items:center; gap:9px; margin-bottom:28px; }
+    .logo .dot{ width:11px; height:11px; border-radius:50%; background:linear-gradient(135deg,var(--purple),var(--pink)); }
+    .logo span{ font-weight:800; font-size:14px; letter-spacing:.3px; }
+    h1{ font-size:26px; font-weight:900; line-height:1.15; margin-bottom:12px; }
+    p.sub{ font-size:15px; line-height:1.55; color:var(--muted); margin-bottom:26px; }
+    label{ display:block; font-size:12px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:var(--muted); margin:0 0 7px; }
+    input{
+      width:100%; font-family:inherit; font-size:16px; color:var(--text);
+      padding:14px 16px; border:1.5px solid var(--border); border-radius:12px;
+      margin-bottom:18px; background:#faf9fc; transition:border-color .15s, background .15s;
+    }
+    input:focus{ outline:none; border-color:var(--purple); background:#fff; }
+    .err{ color:#dc2626; font-size:13px; margin:-12px 0 14px; display:none; }
+    button{
+      width:100%; cursor:pointer; font-family:inherit; font-size:16px; font-weight:800; color:#fff;
+      background:linear-gradient(135deg,var(--purple),var(--pink)); border:none;
+      padding:16px; border-radius:50px; transition:transform .15s, box-shadow .15s, opacity .15s;
+      box-shadow:0 10px 28px -10px rgba(247,47,158,.55);
+    }
+    button:hover{ transform:translateY(-1px); }
+    button:disabled{ opacity:.6; cursor:default; transform:none; }
+    .fineprint{ font-size:12px; color:var(--muted); margin-top:18px; line-height:1.5; text-align:center; }
+    a{ color:var(--purple); text-decoration:none; }
+    /* success state */
+    #success{ display:none; text-align:center; }
+    #success .check{
+      width:64px; height:64px; border-radius:50%; margin:0 auto 22px;
+      background:linear-gradient(135deg,var(--purple),var(--pink));
+      display:flex; align-items:center; justify-content:center; color:#fff; font-size:30px;
+    }
+    .config-note{
+      display:none; background:#fffbeb; border:1px solid #fde68a; color:#7c5e00;
+      font-size:12.5px; line-height:1.5; border-radius:12px; padding:12px 14px; margin-bottom:20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- FORM STATE -->
+    <div id="form-state">
+      <div class="logo"><span class="dot"></span><span>unity ads</span></div>
+      <h1>Unsubscribe from updates</h1>
+      <p class="sub">Sorry to see you go. Enter your details and we'll remove you from the Unity Ads newsletter.</p>
+
+      <div class="config-note" id="config-note">
+        ⚙️ Setup needed: paste your Google Apps Script URL into <code>ENDPOINT_URL</code> in this file (see the instructions Claude gave you) so submissions are recorded.
+      </div>
+
+      <form id="unsub-form" novalidate>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@studio.com">
+        <div class="err" id="err">Please enter a valid email address.</div>
+        <button type="submit" id="submit-btn">Unsubscribe me</button>
+      </form>
+      <p class="fineprint">Changed your mind? <a href="index.html">Back to the newsletter</a></p>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="success">
+      <div class="check">✓</div>
+      <h1>You're unsubscribed</h1>
+      <p class="sub">You won't receive any more Unity Ads newsletters. Thanks for reading — you're always welcome back.</p>
+      <p class="fineprint"><a href="index.html">Back to the newsletter</a></p>
+    </div>
+  </div>
+
+  <script>
+    /* ───────────────────────────────────────────────────────────────
+       PASTE YOUR GOOGLE APPS SCRIPT WEB-APP URL BETWEEN THE QUOTES.
+       (Setup steps were provided by Claude. Until you do, submissions
+        just show the success screen without being recorded.)
+       ─────────────────────────────────────────────────────────────── */
+    const ENDPOINT_URL = "";
+
+    const form = document.getElementById('unsub-form');
+    const emailEl = document.getElementById('email');
+    const nameEl = document.getElementById('name');
+    const errEl = document.getElementById('err');
+    const btn = document.getElementById('submit-btn');
+
+    if (!ENDPOINT_URL) document.getElementById('config-note').style.display = 'block';
+
+    function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = emailEl.value.trim();
+      const name = nameEl.value.trim();
+      if (!validEmail(email)) { errEl.style.display = 'block'; emailEl.focus(); return; }
+      errEl.style.display = 'none';
+      btn.disabled = true; btn.textContent = 'Submitting…';
+
+      const done = function(){
+        document.getElementById('form-state').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+      };
+
+      if (ENDPOINT_URL) {
+        fetch(ENDPOINT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ name: name, email: email }).toString()
+        }).then(done).catch(done);
+      } else {
+        setTimeout(done, 400);
+      }
+    });
+  </script>
+</body>
+</html>

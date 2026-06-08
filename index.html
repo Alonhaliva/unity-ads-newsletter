@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unity Ads — What's New (June 2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #7b2ff7;
+      --pink: #f72f9e;
+      --purple-dark: #4c1a9e;
+      --ink: #0d0a14;
+      --ink2: #12101c;
+      --text: #1a1a2e;
+      --muted: #6b6b80;
+      --light-bg: #f7f5ff;
+      --border: #e8e3f5;
+      --white: #ffffff;
+      --rail-w: 220px;
+      --content-max: 780px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', Helvetica, Arial, sans-serif;
+      background: #faf8f3;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── TOP PROGRESS BAR (mobile) ─── */
+    #top-bar {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(250,248,243,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px 8px;
+    }
+    #top-progress-track {
+      height: 3px;
+      background: rgba(123,47,247,0.12);
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+    #top-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      border-radius: 2px;
+      transition: width 0.2s ease;
+    }
+    #chapter-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    #chapter-pills::-webkit-scrollbar { display: none; }
+    .pill {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(123,47,247,0.08);
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .pill.active {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: #fff;
+    }
+
+    /* ─── LAYOUT SHELL ─── */
+    #shell {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ─── LEFT RAIL ─── */
+    #rail {
+      width: var(--rail-w);
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: #fcfbf8;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 36px 0 24px;
+      z-index: 100;
+      overflow: hidden;
+    }
+    .rail-logo {
+      padding: 0 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .rail-logo-dot {
+      width: 10px; height: 10px;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      border-radius: 50%;
+    }
+    .rail-logo-text {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      text-transform: lowercase;
+    }
+    .rail-date {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .rail-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 0;
+      scrollbar-width: none;
+    }
+    .rail-nav::-webkit-scrollbar { display: none; }
+    .rail-progress-track {
+      position: absolute;
+      left: 23px;
+      top: 100px;
+      bottom: 80px;
+      width: 2px;
+      background: rgba(123,47,247,0.12);
+      border-radius: 1px;
+    }
+    .rail-progress-fill {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      width: 2px;
+      height: 0%;
+      background: linear-gradient(180deg, var(--purple), var(--pink));
+      border-radius: 1px;
+      transition: height 0.3s ease;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+      text-decoration: none;
+    }
+    .nav-item:hover { background: rgba(123,47,247,0.05); }
+    .nav-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(20,16,31,0.18);
+      flex-shrink: 0;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-item.active .nav-dot {
+      background: var(--pink);
+      transform: scale(1.4);
+      box-shadow: 0 0 10px rgba(247,47,158,0.6);
+    }
+    .nav-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color 0.3s;
+      line-height: 1.3;
+    }
+    .nav-item.active .nav-label { color: var(--text); font-weight: 700; }
+    .nav-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(20,16,31,0.22);
+      margin-left: auto;
+      transition: color 0.3s;
+    }
+    .nav-item.active .nav-num { color: var(--pink); }
+
+    /* intro/overview items */
+    .nav-item.intro-item .nav-dot { background: rgba(20,16,31,0.14); }
+    .nav-item.intro-item.active .nav-dot { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+
+    /* ─── MAIN CONTENT ─── */
+    #main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      padding: 80px 60px;
+      max-width: calc(var(--content-max) + 120px);
+    }
+    .section + .section {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      background: linear-gradient(180deg, #ffffff 0%, #faf8f3 100%);
+      padding: 80px 60px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(123,47,247,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(247,47,158,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      border-radius: 50%;
+    }
+    .hero-title {
+      font-size: clamp(40px, 5vw, 64px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, #7b2ff7, #f72f9e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-art {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 20px;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 30px 60px -28px rgba(123,47,247,0.45);
+    }
+    .hero-intro {
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-intro p {
+      font-size: 18px;
+      line-height: 32px;
+      color: #3a3a4e;
+      margin-bottom: 20px;
+    }
+    .hero-intro p:last-child { margin-bottom: 0; }
+    .hero-intro a {
+      color: var(--purple);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(123,47,247,0.3);
+    }
+    .hero-intro strong { color: var(--text); }
+
+    /* ─── GLANCE BENTO ─── */
+    #glance {
+      background: var(--light-bg);
+      padding: 80px 60px;
+    }
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bento-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .bento-tile {
+      border-radius: 18px;
+      padding: 24px 26px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+    }
+    .bento-tile.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bento-tile:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .bento-tile.hero-tile {
+      background: linear-gradient(135deg, #7b2ff7, #b324d6);
+    }
+    .bento-tile.sky-tile { background: #0ea5e9; }
+    .bento-tile.indigo-tile { background: #312e81; }
+    .bento-tile.green-tile { background: #15803d; }
+    .bento-tile.blue-tile { background: #2563eb; }
+    .bento-tile.pink-tile { background: linear-gradient(135deg, #c026d3, #f72f9e); }
+    .bento-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tile-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 6px;
+    }
+    .tile-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 5px;
+      line-height: 1.25;
+    }
+    .tile-sub {
+      font-size: 14px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.75);
+    }
+    .tile-emoji { font-size: 20px; margin-bottom: 8px; }
+
+    /* ─── SECTION HEADINGS ─── */
+    .section-heading {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .section-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .section-body {
+      font-size: 18px;
+      line-height: 32px;
+      color: #3a3a4e;
+      margin-bottom: 20px;
+    }
+    .section-body:last-child { margin-bottom: 0; }
+    .section-body a {
+      color: var(--purple);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(123,47,247,0.3);
+    }
+    .section-body strong { color: var(--text); }
+    .section-body em { font-style: italic; }
+
+    /* ─── SCROLLYTELLING PANELS ─── */
+    .scrolly {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: start;
+      padding: 80px 60px;
+    }
+    .scrolly-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 30px 40px 0;
+    }
+    .scrolly-sticky svg, .scrolly-sticky .art-wrap {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 20px;
+      box-shadow: 0 24px 50px -26px rgba(60,40,120,0.40);
+    }
+    .scrolly-content {
+      padding: 80px 0 80px 40px;
+    }
+    .scrolly-stage {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 0;
+    }
+    .scrolly-stage:first-child { padding-top: 0; }
+    .scrolly-stage:last-child { padding-bottom: 0; }
+
+    /* ─── D28 SECTION ─── */
+    #d28 { background: #fff; }
+
+    .d28-curve-svg path.d28-line {
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .d28-curve-svg.animate .d28-line { stroke-dashoffset: 0; }
+
+    /* beta chart bars */
+    .beta-bar-fill {
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 1s cubic-bezier(0.4,0,0.2,1);
+    }
+    .beta-bar-fill.animate { transform: scaleX(1); }
+
+    .case-study-card {
+      background: var(--light-bg);
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-top: 16px;
+      border-left: 4px solid var(--purple);
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .case-study-card.in-view { opacity: 1; transform: translateX(0); }
+    .case-study-card:nth-child(2) { border-left-color: var(--pink); transition-delay: 0.15s; }
+    .cs-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .cs-name a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 2px solid var(--purple);
+    }
+    .case-study-card:nth-child(2) .cs-name a { border-bottom-color: var(--pink); }
+    .cs-metrics {
+      font-size: 15px;
+      line-height: 24px;
+      color: #4a4a60;
+    }
+
+    .note-box {
+      background: #fffbf0;
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin-top: 20px;
+      border: 1px solid #fde68a;
+    }
+    .note-box p {
+      font-size: 16px;
+      line-height: 26px;
+      color: #6b5900;
+    }
+
+    .text-link {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--purple);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .text-link:hover { border-bottom-color: var(--purple); }
+
+    /* beta chart container */
+    .beta-chart-box {
+      background: var(--light-bg);
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 20px;
+    }
+    .beta-chart-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 4px;
+    }
+    .beta-chart-sub {
+      font-size: 13px;
+      line-height: 19px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    /* ─── ROAS SECTION ─── */
+    #roas {
+      background: linear-gradient(180deg, #f0fdf8 0%, #fff 100%);
+    }
+    .roas-accent { color: #0ea5e9; }
+
+    /* ─── DASHBOARD SECTION ─── */
+    #dashboard { background: #fff; }
+    .dash-accent { color: #312e81; }
+
+    /* ─── SDK SECTION ─── */
+    #sdk {
+      background: linear-gradient(135deg, #f3fbf6 0%, #ebf8f0 100%);
+    }
+    #sdk .section-num { color: #15803d; }
+
+    .sdk-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .stat-card {
+      background: #ffffff;
+      border: 1px solid #d6efe0;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.92);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      box-shadow: 0 8px 24px -16px rgba(21,128,61,0.4);
+    }
+    .stat-card.in-view { opacity: 1; transform: scale(1); }
+    .stat-card:nth-child(2) { transition-delay: 0.1s; }
+    .stat-card:nth-child(3) { transition-delay: 0.2s; }
+    .stat-card:nth-child(4) { transition-delay: 0.3s; }
+    .stat-num {
+      font-size: 32px;
+      font-weight: 900;
+      color: #15803d;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      line-height: 18px;
+      color: var(--muted);
+    }
+    .sdk-disclaimer {
+      font-size: 13px;
+      line-height: 20px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    /* speedometer needle animation */
+    .needle-anim {
+      transform-origin: 300px 165px;
+      transform: rotate(-90deg);
+      transition: transform 1.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .needle-anim.animate { transform: rotate(35deg); }
+
+    /* ─── DATA SECTION ─── */
+    #data {
+      background: linear-gradient(135deg, #f6f1fd 0%, #eef2fd 100%);
+    }
+    #data .section-num { color: var(--purple); }
+
+    .data-items {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .data-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      box-shadow: 0 8px 24px -18px rgba(123,47,247,0.4);
+    }
+    .data-item.in-view { opacity: 1; transform: translateY(0); }
+    .data-item:nth-child(2) { transition-delay: 0.1s; }
+    .data-item:nth-child(3) { transition-delay: 0.2s; }
+    .data-item:nth-child(4) { transition-delay: 0.3s; }
+    .data-item-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .data-item-desc {
+      font-size: 15px;
+      line-height: 24px;
+      color: var(--muted);
+    }
+
+    /* ─── ROADMAP SECTION ─── */
+    #roadmap {
+      background: #fff;
+    }
+
+    .roadmap-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 32px;
+      position: relative;
+    }
+    .roadmap-items::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--purple), var(--pink));
+      opacity: 0.2;
+    }
+    .roadmap-item {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .roadmap-item:last-child { border-bottom: none; }
+    .roadmap-item.in-view { opacity: 1; transform: translateX(0); }
+    .roadmap-item:nth-child(2) { transition-delay: 0.12s; }
+    .roadmap-item:nth-child(3) { transition-delay: 0.24s; }
+    .roadmap-item:nth-child(4) { transition-delay: 0.36s; }
+    .roadmap-dot {
+      flex-shrink: 0;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+      margin-top: 2px;
+    }
+    .roadmap-body {}
+    .roadmap-q {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 4px;
+    }
+    .roadmap-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+    .roadmap-desc {
+      font-size: 16px;
+      line-height: 26px;
+      color: #5a5a6e;
+    }
+
+    /* ─── CLOSING CTA ─── */
+    #cta {
+      background: #faf8f3;
+      padding: 80px 60px;
+    }
+    .cta-box {
+      max-width: 620px;
+      background: linear-gradient(135deg, #7b2ff7, #f72f9e);
+      border-radius: 28px;
+      padding: 48px 44px;
+      box-shadow: 0 30px 70px -30px rgba(247,47,158,0.55);
+    }
+    .cta-title {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta-body {
+      font-size: 18px;
+      line-height: 30px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 32px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #ffffff;
+      color: var(--purple);
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 16px 38px;
+      border-radius: 50px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.24);
+    }
+
+    /* ─── FOOTER ─── */
+    #footer {
+      background: #faf8f3;
+      border-top: 1px solid var(--border);
+      padding: 48px 60px;
+    }
+    .footer-disclaimer {
+      font-size: 13px;
+      line-height: 22px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      max-width: 600px;
+    }
+    .footer-sign {
+      font-size: 13px;
+      line-height: 22px;
+      color: #4a4a5e;
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+
+    /* ─── ENTRANCE ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.in-view { opacity: 1; transform: translateY(0); }
+    .fade-up.d2 { transition-delay: 0.1s; }
+    .fade-up.d3 { transition-delay: 0.2s; }
+    .fade-up.d4 { transition-delay: 0.3s; }
+
+    .art-reveal {
+      opacity: 0;
+      transform: scale(0.97) translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .art-reveal.in-view { opacity: 1; transform: scale(1) translateY(0); }
+
+    /* ─── COUNTER ─── */
+    .count-up { font-variant-numeric: tabular-nums; }
+
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .fade-up, .bento-tile, .stat-card, .case-study-card,
+      .data-item, .roadmap-item { opacity: 1 !important; transform: none !important; }
+      .beta-bar-fill { transform: scaleX(1) !important; }
+      .d28-curve-svg path.d28-line { stroke-dashoffset: 0 !important; }
+      .needle-anim { transform: rotate(35deg) !important; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      #rail { display: none; }
+      #top-bar { display: block; }
+      body { padding-top: 70px; }
+
+      .scrolly {
+        display: block;
+        padding: 48px 24px;
+      }
+      .scrolly-sticky {
+        position: static;
+        height: auto;
+        padding: 0 0 28px;
+        justify-content: flex-start;
+      }
+      .scrolly-sticky svg, .scrolly-sticky .art-wrap {
+        max-width: 100%;
+      }
+      .scrolly-content {
+        padding: 0;
+      }
+      .scrolly-stage { min-height: auto; padding: 24px 0; }
+
+      .section { padding: 48px 24px; }
+      #hero, #glance, #roas, #dashboard, #roadmap, #cta, #footer { padding: 48px 24px; }
+      #sdk, #data { padding: 48px 24px; }
+
+      .bento-row { grid-template-columns: 1fr 1fr; }
+      .sdk-stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .bento-row { grid-template-columns: 1fr; }
+      .sdk-stats-grid { grid-template-columns: 1fr 1fr; }
+      .section-heading { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE TOP BAR ─── -->
+<div id="top-bar">
+  <div id="top-progress-track"><div id="top-progress-fill"></div></div>
+  <div id="chapter-pills">
+    <div class="pill" data-target="d28">1 D28</div>
+    <div class="pill" data-target="roas">2 ROAS</div>
+    <div class="pill" data-target="dashboard">3 Dashboard</div>
+    <div class="pill" data-target="sdk">4 SDK</div>
+    <div class="pill" data-target="data">5 Data</div>
+    <div class="pill" data-target="roadmap">6 Roadmap</div>
+  </div>
+</div>
+
+<!-- ─── LAYOUT SHELL ─── -->
+<div id="shell">
+
+  <!-- LEFT RAIL -->
+  <nav id="rail" aria-label="Chapter navigation">
+    <div class="rail-logo">
+      <div class="rail-logo-dot"></div>
+      <span class="rail-logo-text">unity ads</span>
+      <span class="rail-date">June 2026</span>
+    </div>
+    <div class="rail-progress-track">
+      <div class="rail-progress-fill" id="rail-fill"></div>
+    </div>
+    <div class="rail-nav">
+      <a href="#hero" class="nav-item intro-item" data-section="hero">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Intro</span>
+      </a>
+      <a href="#glance" class="nav-item intro-item" data-section="glance">
+        <div class="nav-dot"></div>
+        <span class="nav-label">At a glance</span>
+      </a>
+      <a href="#d28" class="nav-item" data-section="d28">
+        <div class="nav-dot"></div>
+        <span class="nav-label">D28 ROAS</span>
+        <span class="nav-num">01</span>
+      </a>
+      <a href="#roas" class="nav-item" data-section="roas">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Faster ROAS</span>
+        <span class="nav-num">02</span>
+      </a>
+      <a href="#dashboard" class="nav-item" data-section="dashboard">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Dashboard</span>
+        <span class="nav-num">03</span>
+      </a>
+      <a href="#sdk" class="nav-item" data-section="sdk">
+        <div class="nav-dot"></div>
+        <span class="nav-label">SDK 4.18+</span>
+        <span class="nav-num">04</span>
+      </a>
+      <a href="#data" class="nav-item" data-section="data">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Data signals</span>
+        <span class="nav-num">05</span>
+      </a>
+      <a href="#roadmap" class="nav-item" data-section="roadmap">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Roadmap</span>
+        <span class="nav-num">06</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main">
+
+    <!-- ═══ HERO ═══ -->
+    <section id="hero">
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>A note from the Unity Ads team</div>
+      <h1 class="hero-title">A lot has<br>changed <span>this quarter.</span></h1>
+      <div class="hero-art">
+        <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rocket launching past floating product tags" style="width:100%;height:auto;border-radius:20px;">
+          <defs>
+            <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7b2ff7"/><stop offset="1" stop-color="#f72f9e"/>
+            </linearGradient>
+            <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffe14d"/><stop offset="1" stop-color="#ff7a45"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="250" rx="16" fill="url(#hg)"/>
+          <circle cx="80" cy="60" r="5" fill="#ffffff" opacity=".8"/>
+          <circle cx="520" cy="40" r="4" fill="#ffffff" opacity=".7"/>
+          <circle cx="470" cy="190" r="6" fill="#ffffff" opacity=".5"/>
+          <circle cx="120" cy="200" r="4" fill="#ffffff" opacity=".6"/>
+          <g opacity=".95">
+            <rect x="60" y="150" width="90" height="30" rx="15" fill="#ffffff"/>
+            <text x="105" y="170" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#7b2ff7" text-anchor="middle">D28</text>
+            <rect x="430" y="80" width="110" height="30" rx="15" fill="#ffffff"/>
+            <text x="485" y="100" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#f72f9e" text-anchor="middle">Vector</text>
+            <rect x="450" y="150" width="100" height="30" rx="15" fill="#ffffff" opacity=".85"/>
+            <text x="500" y="170" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#7b2ff7" text-anchor="middle">CPE</text>
+          </g>
+          <g transform="translate(300 72)">
+            <path d="M0,-46 C21,-26 21,54 0,74 C-21,54 -21,-26 0,-46 Z" fill="#ffffff"/>
+            <circle cx="0" cy="2" r="12" fill="#7b2ff7"/>
+            <path d="M-19,46 L-38,78 L-13,63 Z" fill="#ffd0ec"/>
+            <path d="M19,46 L38,78 L13,63 Z" fill="#ffd0ec"/>
+            <path d="M-11,74 C-11,104 11,104 11,74 C6,91 -6,91 -11,74 Z" fill="url(#flame)"/>
+          </g>
+          <g fill="#ffffff" opacity=".85">
+            <path d="M210,90 l4,9 9,4 -9,4 -4,9 -4,-9 -9,-4 9,-4 z"/>
+            <path d="M400,140 l3,7 7,3 -7,3 -3,7 -3,-7 -7,-3 7,-3 z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hero-intro">
+        <p>Q1 is usually our quiet quarter. The holiday rush is over, everyone&rsquo;s catching their breath, and things tend to slow down.</p>
+        <p>This year they didn&rsquo;t. User quality improved across almost every campaign type, on both Android and iOS, and in a few categories scale even topped the holiday peak. That&rsquo;s not a seasonal bump &mdash; it&rsquo;s <strong>Vector</strong>, the AI behind Unity Ads, steadily getting better. (Google Cloud even <a href="https://cloud.google.com/blog/products/compute/whats-new-in-compute-at-next26">highlighted</a> how efficiently Vector now scales real-time AI behind the scenes.) Here&rsquo;s what came out of it.</p>
+      </div>
+    </section>
+
+    <!-- ═══ AT A GLANCE ═══ -->
+    <section id="glance">
+      <div class="section-eyebrow">Everything in one glance</div>
+      <div class="bento-grid">
+        <div class="bento-tile hero-tile" style="transition-delay:0s;">
+          <div class="tile-tag">&#x1F4C8; Headline</div>
+          <div class="tile-title">D28 ROAS, expanded</div>
+          <div class="tile-sub">IAP is live &middot; Ad Revenue &amp; Hybrid now in open beta, worldwide</div>
+        </div>
+        <div class="bento-row">
+          <div class="bento-tile sky-tile" style="transition-delay:0.08s;">
+            <div class="tile-emoji">&#x26A1;</div>
+            <div class="tile-title">Faster ROAS</div>
+            <div class="tile-sub">Launch from day one</div>
+          </div>
+          <div class="bento-tile indigo-tile" style="transition-delay:0.16s;">
+            <div class="tile-emoji">&#x2728;</div>
+            <div class="tile-title">New dashboard</div>
+            <div class="tile-sub">Live since May 19</div>
+          </div>
+        </div>
+        <div class="bento-row">
+          <div class="bento-tile green-tile" style="transition-delay:0.24s;">
+            <div class="tile-emoji">&#x1F3CE;&#xFE0F;</div>
+            <div class="tile-title">SDK 4.18+</div>
+            <div class="tile-sub">Up to 59% faster init</div>
+          </div>
+          <div class="bento-tile blue-tile" style="transition-delay:0.32s;">
+            <div class="tile-emoji">&#x1F50C;</div>
+            <div class="tile-title">Strengthen your data</div>
+            <div class="tile-sub">Google Analytics linking &amp; the Developer Data Framework — fuller signals for Vector</div>
+          </div>
+        </div>
+        <div class="bento-tile pink-tile" style="transition-delay:0.4s;">
+          <div class="tile-sub"><span style="font-size:16px;">&#x1F6E3;&#xFE0F;</span> &nbsp;<strong style="color:#fff;">Coming next:</strong> CPE Retention &amp; Payer campaigns, and a more agentic Vector.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 1. D28 (SCROLLYTELLING) ═══ -->
+    <div id="d28" class="scrolly" style="background:#fff;">
+      <!-- STICKY LEFT: illustration -->
+      <div class="scrolly-sticky">
+        <div class="art-wrap">
+          <svg class="d28-curve-svg" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A short D7 curve versus a longer D28 curve capturing long-tail value" style="width:100%;height:auto;border-radius:18px;">
+            <defs>
+              <linearGradient id="d28bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b1259"/><stop offset="1" stop-color="#6d28d9"/></linearGradient>
+              <linearGradient id="d28area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a8ff" stop-opacity=".55"/><stop offset="1" stop-color="#c9a8ff" stop-opacity="0"/></linearGradient>
+            </defs>
+            <rect width="600" height="220" rx="16" fill="url(#d28bg)"/>
+            <g stroke="#ffffff" stroke-opacity=".12" stroke-width="1">
+              <line x1="60" y1="40" x2="560" y2="40"/><line x1="60" y1="95" x2="560" y2="95"/><line x1="60" y1="150" x2="560" y2="150"/>
+            </g>
+            <line x1="60" y1="180" x2="560" y2="180" stroke="#ffffff" stroke-opacity=".4" stroke-width="2"/>
+            <path d="M60,180 C140,150 180,70 230,60 C320,42 430,38 560,34 L560,180 Z" fill="url(#d28area)"/>
+            <path class="d28-line" d="M60,180 C140,150 180,70 230,60 C320,42 430,38 560,34" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+            <path d="M60,180 C120,150 150,120 175,118 C200,116 215,118 230,118" fill="none" stroke="#ff8fc7" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 9"/>
+            <circle cx="560" cy="34" r="6" fill="#ffe14d"/>
+            <text x="60" y="205" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#cbb8f0">Day 0</text>
+            <text x="218" y="205" font-family="Helvetica,Arial,sans-serif" font-size="13" fill="#ff8fc7">Day 7</text>
+            <text x="528" y="205" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#ffffff">Day 28</text>
+            <rect x="360" y="58" width="180" height="26" rx="13" fill="#ffffff" opacity=".95"/>
+            <text x="450" y="76" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="700" fill="#6d28d9" text-anchor="middle">long-tail value D7 misses</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- RIGHT: scrolling stages -->
+      <div class="scrolly-content">
+        <!-- Stage 1: intro -->
+        <div class="scrolly-stage" data-stage="d28-intro">
+          <div class="section-num fade-up" style="color:#9b51e0;">01 — D28 ROAS</div>
+          <h2 class="section-heading fade-up d2">D28 now sees more of your players</h2>
+          <p class="section-body fade-up d3">
+            D7 is great at catching the players who pay fast. But for a lot of games, more than half of a player&rsquo;s value shows up <em>after</em> the first week &mdash; and D7 just can&rsquo;t see it. So we taught Vector to optimize on a 28-day horizon. You set a country-level ROAS target; Vector predicts each user&rsquo;s 28-day value and bids accordingly.
+          </p>
+          <p class="section-body fade-up d4">
+            <strong>Now live:</strong> D28 IAP ROAS &mdash; for IAP-heavy games with longer payback curves.
+          </p>
+          <p class="section-body fade-up" style="transition-delay:0.4s;">
+            <strong>Open beta (worldwide):</strong> D28 Ad Revenue ROAS and D28 Hybrid ROAS &mdash; long-horizon optimization for ad-funded and mixed-monetization games.
+          </p>
+        </div>
+
+        <!-- Stage 2: beta chart -->
+        <div class="scrolly-stage" data-stage="d28-beta">
+          <div class="beta-chart-box fade-up" id="beta-chart-box">
+            <div class="beta-chart-tag">What the beta is showing</div>
+            <div class="beta-chart-sub">Share of qualifying beta games that beat their paired D7 campaign (same game ID &amp; geo)</div>
+            <svg id="beta-svg" viewBox="0 0 560 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart: 90% Ad Revenue better retention, 67% Ad Revenue higher ARPU, 88% Hybrid better retention, 59% Hybrid higher ARPU" style="width:100%;height:auto;">
+              <g font-family="Helvetica,Arial,sans-serif">
+                <circle cx="6" cy="8" r="5" fill="#7b2ff7"/><text x="16" y="12" font-size="12" fill="#6a6a72">Ad Revenue D28</text>
+                <circle cx="152" cy="8" r="5" fill="#c026d3"/><text x="162" y="12" font-size="12" fill="#6a6a72">Hybrid D28</text>
+                <text x="0" y="42" font-size="13" font-weight="700" fill="#3d3d44">Better D28 retention</text>
+                <rect x="0" y="50" width="560" height="22" rx="11" fill="#e7ddf6"/>
+                <rect class="beta-bar-fill" x="0" y="50" width="504" height="22" rx="11" fill="#7b2ff7"/>
+                <text x="514" y="66" font-size="14" font-weight="800" fill="#7b2ff7">90%</text>
+                <text x="0" y="100" font-size="13" font-weight="700" fill="#3d3d44">Higher ad-revenue ARPU</text>
+                <rect x="0" y="108" width="560" height="22" rx="11" fill="#e7ddf6"/>
+                <rect class="beta-bar-fill" x="0" y="108" width="375" height="22" rx="11" fill="#7b2ff7" style="transition-delay:0.15s;"/>
+                <text x="385" y="124" font-size="14" font-weight="800" fill="#7b2ff7">67%</text>
+                <text x="0" y="158" font-size="13" font-weight="700" fill="#3d3d44">Better D28 retention</text>
+                <rect x="0" y="166" width="560" height="22" rx="11" fill="#f6dcf3"/>
+                <rect class="beta-bar-fill" x="0" y="166" width="493" height="22" rx="11" fill="#c026d3" style="transition-delay:0.3s;"/>
+                <text x="503" y="182" font-size="14" font-weight="800" fill="#c026d3">88%</text>
+                <text x="0" y="216" font-size="13" font-weight="700" fill="#3d3d44">Higher total ARPU</text>
+                <rect x="0" y="224" width="560" height="22" rx="11" fill="#f6dcf3"/>
+                <rect class="beta-bar-fill" x="0" y="224" width="330" height="22" rx="11" fill="#c026d3" style="transition-delay:0.45s;"/>
+                <text x="340" y="240" font-size="14" font-weight="800" fill="#c026d3">59%</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Stage 3: case studies + notes -->
+        <div class="scrolly-stage" data-stage="d28-cases">
+          <p class="section-body fade-up">A couple of real examples:</p>
+          <div class="case-study-card" id="cs-homa">
+            <div class="cs-name"><a href="https://unity.com/resources/homa">Homa</a></div>
+            <div class="cs-metrics">+14% D28 ARPU &nbsp;&middot;&nbsp; +63% D28 retention &nbsp;&middot;&nbsp; ~3&times; scale running D28 alongside D7</div>
+          </div>
+          <div class="case-study-card" id="cs-playrix">
+            <div class="cs-name"><a href="https://unity.com/resources/playrix_vector" style="border-bottom-color:var(--pink);">Playrix</a></div>
+            <div class="cs-metrics">+89% scale &nbsp;&middot;&nbsp; +41% long-term retention &nbsp;&middot;&nbsp; 2.4&times; higher ARPU on iOS vs standard D7</div>
+          </div>
+          <div class="note-box fade-up d2">
+            <p><strong style="color:#6b5900;">One thing to remember:</strong> D28 runs <em>alongside</em> D7, not instead of it. Launch D7 first, let it pass Learning, then spin up D28 in the same geo so it skips Learning and optimizes from day one.</p>
+          </div>
+          <a href="#" class="text-link fade-up d3">Read the full D28 playbook &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 2. ROAS ONBOARDING ═══ -->
+    <section id="roas" class="section" style="padding-left:60px;padding-right:60px;padding-top:80px;padding-bottom:80px;background:linear-gradient(180deg,#f0fdf8 0%,#fff 100%);">
+      <div class="section-num fade-up roas-accent">02 — ROAS Onboarding</div>
+      <h2 class="section-heading fade-up d2">ROAS is faster to get into now</h2>
+      <div class="art-reveal" style="margin-bottom:32px;">
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A fast track from setup to launch" style="width:100%;height:auto;border-radius:18px;">
+          <defs><linearGradient id="roasbg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs>
+          <rect width="600" height="200" rx="16" fill="url(#roasbg)"/>
+          <line x1="40" y1="120" x2="560" y2="120" stroke="#ffffff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="14 12" stroke-linecap="round"/>
+          <g transform="translate(70 70)"><rect x="0" y="0" width="4" height="60" fill="#ffffff"/><path d="M4,0 L34,0 L34,22 L4,22 Z" fill="#ffffff"/><path d="M4,0 h10 v7 h-10 z M24,0 h10 v7 h-10 z M14,7 h10 v8 h-10 z" fill="#0ea5e9"/></g>
+          <g stroke="#ffffff" stroke-opacity=".8" stroke-width="6" stroke-linecap="round"><line x1="330" y1="120" x2="380" y2="120"/><line x1="320" y1="100" x2="360" y2="100"/><line x1="320" y1="140" x2="360" y2="140"/></g>
+          <g transform="translate(430 120)"><circle r="34" fill="#ffffff"/><text x="0" y="6" font-family="Helvetica,Arial,sans-serif" font-size="22" font-weight="800" fill="#16a34a" text-anchor="middle">D1</text></g>
+          <text x="430" y="180" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">launch from day one</text>
+          <text x="84" y="160" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff">setup</text>
+        </svg>
+      </div>
+      <p class="section-body fade-up d3">
+        We trimmed the friction. You can launch ROAS campaigns from day one (no detour through CPI), add new countries to existing campaigns more easily, and the dashboard now flags data-readiness or measurement issues <em>before</em> they slow you down. Learning vs. Live states are clearer too.
+      </p>
+      <p class="section-body fade-up d4">
+        If setup ever felt like too much and you stepped away from ROAS, now&rsquo;s a good time to take another look.
+      </p>
+    </section>
+
+    <!-- ═══ 3. DASHBOARD ═══ -->
+    <section id="dashboard" class="section" style="padding-left:60px;padding-right:60px;padding-top:80px;padding-bottom:80px;background:#fff;border-top:1px solid var(--border);">
+      <div class="section-num fade-up dash-accent">03 — Dashboard</div>
+      <h2 class="section-heading fade-up d2">A cleaner, more connected dashboard</h2>
+      <div class="art-reveal" style="margin-bottom:32px;">
+        <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three connected dashboard nodes: Develop, Acquire, Monetize" style="width:100%;height:auto;border-radius:18px;">
+          <defs><linearGradient id="dashbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111827"/><stop offset="1" stop-color="#312e81"/></linearGradient></defs>
+          <rect width="600" height="210" rx="16" fill="url(#dashbg)"/>
+          <rect x="30" y="26" width="540" height="30" rx="8" fill="#ffffff" opacity=".08"/>
+          <circle cx="48" cy="41" r="5" fill="#ff6b6b"/><circle cx="66" cy="41" r="5" fill="#ffd93d"/><circle cx="84" cy="41" r="5" fill="#6bcB77"/>
+          <line x1="135" y1="135" x2="465" y2="135" stroke="#8b7bf0" stroke-width="3" stroke-dasharray="4 8" stroke-linecap="round"/>
+          <g>
+            <rect x="55" y="90" width="150" height="90" rx="12" fill="#ffffff" opacity=".97"/>
+            <circle cx="80" cy="118" r="11" fill="#0ea5e9"/>
+            <text x="130" y="123" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="800" fill="#111827" text-anchor="middle">Develop</text>
+            <rect x="72" y="145" width="116" height="8" rx="4" fill="#e5e7eb"/><rect x="72" y="159" width="80" height="8" rx="4" fill="#e5e7eb"/>
+          </g>
+          <g>
+            <rect x="225" y="78" width="150" height="104" rx="12" fill="#ffffff"/>
+            <circle cx="250" cy="108" r="11" fill="#9b51e0"/>
+            <text x="300" y="113" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="800" fill="#111827" text-anchor="middle">Acquire</text>
+            <rect x="242" y="136" width="116" height="8" rx="4" fill="#ede9fe"/><rect x="242" y="150" width="90" height="8" rx="4" fill="#ede9fe"/><rect x="242" y="164" width="60" height="8" rx="4" fill="#ede9fe"/>
+          </g>
+          <g>
+            <rect x="395" y="90" width="150" height="90" rx="12" fill="#ffffff" opacity=".97"/>
+            <circle cx="420" cy="118" r="11" fill="#22c55e"/>
+            <text x="472" y="123" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="800" fill="#111827" text-anchor="middle">Monetize</text>
+            <rect x="412" y="145" width="116" height="8" rx="4" fill="#e5e7eb"/><rect x="412" y="159" width="80" height="8" rx="4" fill="#e5e7eb"/>
+          </g>
+        </svg>
+      </div>
+      <p class="section-body fade-up d3">
+        Tabs, logins, tools, reporting surfaces &mdash; managing growth shouldn&rsquo;t feel like a scavenger hunt. So we started bringing it together. The new Unity dashboard began rolling out <strong>May 19</strong>, organized around three clear nodes: <strong>Development</strong>, <strong>User Acquisition</strong>, and <strong>Monetization</strong>.
+      </p>
+      <p class="section-body fade-up d4">
+        Cleaner navigation, a more modern workspace, easier movement between the things you do every day. This is Phase 1 &mdash; the foundation, not the finish line. More products join through the rest of 2026.
+      </p>
+    </section>
+
+    <!-- ═══ 4. SDK (SCROLLYTELLING) ═══ -->
+    <div id="sdk" class="scrolly" style="background:linear-gradient(135deg,#f3fbf6 0%,#ebf8f0 100%);">
+      <!-- STICKY LEFT: speedometer -->
+      <div class="scrolly-sticky">
+        <div class="art-wrap">
+          <svg id="sdk-speedo" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A speedometer in the green zone" style="width:100%;height:auto;border-radius:18px;">
+            <defs><linearGradient id="sdkbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f172a"/><stop offset="1" stop-color="#15803d"/></linearGradient></defs>
+            <rect width="600" height="200" rx="16" fill="url(#sdkbg)"/>
+            <g transform="translate(300 165)">
+              <path d="M-110,0 A110,110 0 0 1 110,0" fill="none" stroke="#ffffff" stroke-opacity=".15" stroke-width="22" stroke-linecap="round"/>
+              <path d="M-110,0 A110,110 0 0 1 -16,-108" fill="none" stroke="#ef4444" stroke-width="22" stroke-linecap="round"/>
+              <path d="M-16,-108 A110,110 0 0 1 62,-90" fill="none" stroke="#f59e0b" stroke-width="22"/>
+              <path d="M62,-90 A110,110 0 0 1 110,0" fill="none" stroke="#22c55e" stroke-width="22" stroke-linecap="round"/>
+              <!-- needle — starts at left (slow), animates to green -->
+              <line class="needle-anim" id="sdk-needle" x1="0" y1="0" x2="0" y2="-78" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+              <circle r="12" fill="#ffffff"/>
+            </g>
+            <text x="300" y="120" font-family="Helvetica,Arial,sans-serif" font-size="34" font-weight="800" fill="#ffffff" text-anchor="middle">59% faster</text>
+            <text x="300" y="146" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="600" fill="#bbf7d0" text-anchor="middle">SDK initialization</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- RIGHT: scrolling stages -->
+      <div class="scrolly-content">
+        <div class="scrolly-stage" data-stage="sdk-intro">
+          <div class="section-num fade-up" style="color:#86efac;">04 — SDK 4.18+</div>
+          <h2 class="section-heading fade-up d2" style="color:#fff;">A faster, steadier SDK</h2>
+          <p class="section-body fade-up d3">
+            It&rsquo;s easy to treat an SDK update as routine maintenance. This one isn&rsquo;t. The latest Unity Ads SDK <strong>(4.18+)</strong> starts faster, delivers more reliably, and feeds cleaner runtime signals into optimization &mdash; which means less drop-off between load and show, and fewer opportunities lost before the auction even begins.
+          </p>
+          <p class="section-body fade-up d4">
+            In our pre/post analyses: <strong>up to 59% faster init</strong>, stronger load-to-show (+32% Android, +66% iOS), and roughly <strong>~20% more impressions</strong> and <strong>~19% more revenue per DAU</strong>.
+          </p>
+          <p class="sdk-disclaimer fade-up" style="transition-delay:0.4s;">
+            Internal results, not guaranteed outcomes &mdash; they vary with implementation, traffic mix, and mediation setup.
+          </p>
+        </div>
+
+        <div class="scrolly-stage" data-stage="sdk-stats">
+          <div class="sdk-stats-grid">
+            <div class="stat-card" id="stat1">
+              <div class="stat-num"><span class="count-up" data-target="59">0</span>%</div>
+              <div class="stat-label">Faster SDK<br>initialization</div>
+            </div>
+            <div class="stat-card" id="stat2">
+              <div class="stat-num">+<span class="count-up" data-target="32">0</span>%</div>
+              <div class="stat-label">Load-to-show<br>Android</div>
+            </div>
+            <div class="stat-card" id="stat3">
+              <div class="stat-num">+<span class="count-up" data-target="66">0</span>%</div>
+              <div class="stat-label">Load-to-show<br>iOS</div>
+            </div>
+            <div class="stat-card" id="stat4">
+              <div class="stat-num">~<span class="count-up" data-target="20">0</span>%</div>
+              <div class="stat-label">More impressions<br>per DAU</div>
+            </div>
+          </div>
+          <div class="sdk-disclaimer fade-up d2" style="margin-top:20px;">
+            Internal results, not guaranteed outcomes &mdash; they vary with implementation, traffic mix, and mediation setup.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 5. DATA ACTIVATION ═══ -->
+    <section id="data" style="padding:80px 60px;background:linear-gradient(135deg,#f6f1fd 0%,#eef2fd 100%);">
+      <div class="section-num fade-up" style="color:#c9a8ff;">05 — Data Activation</div>
+      <h2 class="section-heading fade-up d2" style="color:#fff;margin-bottom:16px;">Fewer blind spots, smarter optimization</h2>
+      <div class="art-reveal" style="margin-bottom:32px;">
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scattered signals connecting into Vector" style="width:100%;height:auto;border-radius:18px;max-width:540px;">
+          <defs><linearGradient id="databg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b2ff7"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+          <rect width="600" height="200" rx="16" fill="url(#databg)"/>
+          <g transform="translate(430 100)">
+            <circle r="46" fill="#ffffff"/>
+            <text x="0" y="-2" font-family="Helvetica,Arial,sans-serif" font-size="15" font-weight="800" fill="#7b2ff7" text-anchor="middle">Vector</text>
+            <text x="0" y="16" font-family="Helvetica,Arial,sans-serif" font-size="10" font-weight="600" fill="#7b2ff7" text-anchor="middle">optimization</text>
+          </g>
+          <g stroke="#ffffff" stroke-width="2.5" stroke-opacity=".75">
+            <line x1="120" y1="50" x2="390" y2="86"/><line x1="100" y1="100" x2="384" y2="100"/><line x1="120" y1="150" x2="390" y2="114"/><line x1="200" y1="40" x2="395" y2="80"/>
+          </g>
+          <g font-family="Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#7b2ff7" text-anchor="middle">
+            <g transform="translate(95 50)"><rect x="-50" y="-15" width="100" height="30" rx="15" fill="#ffffff"/><text y="4">Attribution</text></g>
+            <g transform="translate(80 100)"><rect x="-44" y="-15" width="88" height="30" rx="15" fill="#ffffff"/><text y="4">GA / Firebase</text></g>
+            <g transform="translate(100 150)"><rect x="-46" y="-15" width="92" height="30" rx="15" fill="#ffffff"/><text y="4">Revenue</text></g>
+            <g transform="translate(205 30)"><rect x="-42" y="-15" width="84" height="30" rx="15" fill="#ffffff"/><text y="4">SDK signals</text></g>
+          </g>
+        </svg>
+      </div>
+      <p class="section-body fade-up d3" style="color:rgba(255,255,255,0.72);max-width:620px;">
+        Optimization is only as good as what it can see. Most studios aren&rsquo;t short on data &mdash; it&rsquo;s just scattered across attribution, behavior tools, and revenue systems. We&rsquo;ve made it easier to connect those signals so Vector works with the full picture:
+      </p>
+      <div class="data-items">
+        <div class="data-item">
+          <div class="data-item-title">Google Analytics linking</div>
+          <div class="data-item-desc">A quick, no-code, 3-step link for your GA/Firebase behavior signals. Attribution tells you how players arrived; this tells you what they actually do.</div>
+        </div>
+        <div class="data-item">
+          <div class="data-item-title">MMP data quality</div>
+          <div class="data-item-desc">Cleaner attribution windows, organic data, and revenue-event mapping. Bad inputs mean bad optimization, so this matters more than it might look.</div>
+        </div>
+        <div class="data-item">
+          <div class="data-item-title">Android license key &amp; IAP signals</div>
+          <div class="data-item-desc">Stronger Android revenue validation and cleaner purchase signals.</div>
+        </div>
+        <div class="data-item">
+          <div class="data-item-title">Developer Data Framework (DDF)</div>
+          <div class="data-item-desc">The permission layer that unlocks approved data for optimization &mdash; you stay in control of how your data is used.</div>
+        </div>
+      </div>
+      <p class="section-body fade-up" style="color:rgba(255,255,255,0.72);max-width:620px;margin-top:28px;">
+        And on the privacy side: Unity recently <a href="https://unity.com/blog/unity-joins-iab-europe-tcf-compliant-data-use-advertising" style="color:#c9a8ff;border-bottom:1px solid rgba(201,168,255,0.4);">joined IAB Europe&rsquo;s Transparency &amp; Consent Framework</a> &mdash; a recognized industry standard for collecting and respecting user consent across European markets. As you connect more signals, they&rsquo;re handled to that standard.
+      </p>
+    </section>
+
+    <!-- ═══ 6. ROADMAP ═══ -->
+    <section id="roadmap" style="padding:80px 60px;background:#fff;border-top:1px solid var(--border);">
+      <div class="section-num fade-up" style="color:var(--pink);">06 — Roadmap</div>
+      <h2 class="section-heading fade-up d2">What&rsquo;s coming next</h2>
+      <div class="art-reveal" style="margin-bottom:36px;">
+        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A winding road with Q2, Q3 and H2 milestones" style="width:100%;height:auto;border-radius:18px;max-width:600px;">
+          <defs><linearGradient id="rmbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f72f9e"/><stop offset="1" stop-color="#7b2ff7"/></linearGradient></defs>
+          <rect width="600" height="200" rx="16" fill="url(#rmbg)"/>
+          <path d="M30,165 C160,165 150,60 280,60 C410,60 400,150 570,150" fill="none" stroke="#ffffff" stroke-width="6" stroke-opacity=".55" stroke-dasharray="2 14" stroke-linecap="round"/>
+          <g>
+            <circle cx="120" cy="150" r="9" fill="#ffffff"/>
+            <text x="120" y="125" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Q2</text>
+            <text x="120" y="178" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffe1f1" text-anchor="middle">CPE</text>
+          </g>
+          <g>
+            <circle cx="280" cy="60" r="9" fill="#ffffff"/>
+            <text x="280" y="38" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Q3</text>
+            <text x="280" y="88" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffe1f1" text-anchor="middle">Custom-Event</text>
+          </g>
+          <g>
+            <circle cx="450" cy="118" r="9" fill="#ffffff"/>
+            <text x="450" y="96" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">H2</text>
+            <text x="450" y="146" font-family="Helvetica,Arial,sans-serif" font-size="11" fill="#ffe1f1" text-anchor="middle">agentic Vector</text>
+          </g>
+          <text x="558" y="138" font-size="22" text-anchor="end">&#x1F3C1;</text>
+        </svg>
+      </div>
+      <div class="roadmap-items">
+        <div class="roadmap-item">
+          <div class="roadmap-dot">Q2</div>
+          <div class="roadmap-body">
+            <div class="roadmap-q">Q2 / June</div>
+            <div class="roadmap-title">CPE Retention &amp; CPE Payer</div>
+            <div class="roadmap-desc">Optimize toward specific in-game events that signal LTV: users likely to stick around, or likely to pay. For when ROAS isn&rsquo;t the only thing you care about.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot">Q3</div>
+          <div class="roadmap-body">
+            <div class="roadmap-q">Q3</div>
+            <div class="roadmap-title">CPE Custom-Event</div>
+            <div class="roadmap-desc">Define your own optimization signal. Tell Vector exactly what success looks like for your game.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot" style="font-size:10px;text-align:center;line-height:1.2;">2026</div>
+          <div class="roadmap-body">
+            <div class="roadmap-q">Through 2026</div>
+            <div class="roadmap-title">More of One Unity</div>
+            <div class="roadmap-desc">Ad Quality, LevelPlay, and Rewarded Offer join the unified experience. By year-end, video and offerwall demand live in a single Acquire experience.</div>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-dot">H2</div>
+          <div class="roadmap-body">
+            <div class="roadmap-q">H2</div>
+            <div class="roadmap-title">Vector goes agentic</div>
+            <div class="roadmap-desc">Creative Optimization, an Advertiser Insights Agent, GenAI Creative, and Creative Insights are in the works. The direction is clear: Vector is moving from a campaign optimization engine toward something that helps you actually run your UA. It&rsquo;s the same system, just doing more over time.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CLOSING CTA ═══ -->
+    <section id="cta">
+      <div class="cta-box">
+        <div class="cta-title fade-up">Not sure where to start?</div>
+        <div class="cta-body fade-up d2">There&rsquo;s no single right answer &mdash; the best next step depends on your monetization model and where your biggest gaps are today. Your Unity team is happy to look at your setup with you and figure out what&rsquo;s worth doing first.</div>
+        <a href="mailto:alon.halva@unity3d.com?subject=Unity%20Ads%20%E2%80%94%20let%27s%20talk%20about%20my%20setup&amp;body=Hi%20Alon%2C%0A%0AI%27d%20love%20to%20go%20over%20what%27s%20worth%20doing%20first%20for%20my%20game.%0A%0A" class="cta-btn fade-up d3">Talk to your Unity team</a>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer id="footer">
+      <p class="footer-disclaimer">Performance figures above come from internal Unity analyses and beta cohorts. They&rsquo;re real results we&rsquo;ve observed &mdash; not guaranteed outcomes. Your mileage depends on your game, traffic, and setup.</p>
+      <p class="footer-sign">Thanks for reading. More soon. &mdash; The Unity Ads team</p>
+      <p class="footer-links">
+        <a href="https://create.unity.com/Unity_MyPage_W_AccountID" target="_blank" rel="noopener">Manage preferences</a> &nbsp;&middot;&nbsp; <a href="unsubscribe.html">Unsubscribe</a> &nbsp;&middot;&nbsp; Unity Technologies
+      </p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ─── SCROLL PROGRESS ───
+  function updateScrollProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docH > 0 ? (scrollTop / docH) * 100 : 0;
+    var fill = document.getElementById('top-progress-fill');
+    if (fill) fill.style.width = pct + '%';
+    var railFill = document.getElementById('rail-fill');
+    if (railFill) railFill.style.height = pct + '%';
+  }
+
+  // ─── ACTIVE SECTION (rail + pills) ───
+  var sections = ['hero','glance','d28','roas','dashboard','sdk','data','roadmap'];
+  var navItems = document.querySelectorAll('.nav-item[data-section]');
+  var pills = document.querySelectorAll('.pill[data-target]');
+
+  function setActiveSection(id) {
+    navItems.forEach(function(el) {
+      el.classList.toggle('active', el.getAttribute('data-section') === id);
+    });
+    pills.forEach(function(el) {
+      el.classList.toggle('active', el.getAttribute('data-target') === id);
+    });
+  }
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActiveSection(entry.target.id);
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+
+  // ─── GENERIC FADE-IN (IntersectionObserver) ───
+  var fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up, .bento-tile, .art-reveal, .case-study-card').forEach(function(el) {
+    if (!prefersReduced) fadeObserver.observe(el);
+    else el.classList.add('in-view');
+  });
+
+  // ─── BENTO tiles ───
+  document.querySelectorAll('.bento-tile').forEach(function(el) {
+    if (!prefersReduced) fadeObserver.observe(el);
+    else el.classList.add('in-view');
+  });
+
+  // ─── D28 CURVE DRAW ───
+  var d28Observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        d28Observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  var d28svg = document.querySelector('.d28-curve-svg');
+  if (d28svg) {
+    if (!prefersReduced) d28Observer.observe(d28svg);
+    else d28svg.classList.add('animate');
+  }
+
+  // ─── BETA BAR CHART ANIMATION ───
+  var betaObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.beta-bar-fill').forEach(function(bar) {
+          bar.classList.add('animate');
+        });
+        betaObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  var betaBox = document.getElementById('beta-chart-box');
+  if (betaBox) {
+    if (!prefersReduced) betaObserver.observe(betaBox);
+    else betaBox.querySelectorAll('.beta-bar-fill').forEach(function(b) { b.classList.add('animate'); });
+  }
+
+  // ─── CASE STUDY CARDS ───
+  var csCards = document.querySelectorAll('.case-study-card');
+  var csObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        csObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  csCards.forEach(function(el) {
+    if (!prefersReduced) csObserver.observe(el);
+    else el.classList.add('in-view');
+  });
+
+  // ─── SDK NEEDLE ANIMATION ───
+  var needleObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        document.getElementById('sdk-needle').classList.add('animate');
+        needleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  var sdkSpeedo = document.getElementById('sdk-speedo');
+  if (sdkSpeedo) {
+    if (!prefersReduced) needleObserver.observe(sdkSpeedo);
+    else document.getElementById('sdk-needle').classList.add('animate');
+  }
+
+  // ─── STAT CARDS COUNT UP ───
+  var statObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        var counter = entry.target.querySelector('.count-up');
+        if (counter) animateCount(counter);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stat-card').forEach(function(el) {
+    if (!prefersReduced) statObserver.observe(el);
+    else {
+      el.classList.add('in-view');
+      var counter = el.querySelector('.count-up');
+      if (counter) counter.textContent = counter.getAttribute('data-target');
+    }
+  });
+
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var start = 0;
+    var duration = 900;
+    var startTime = null;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(start + (target - start) * ease);
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ─── DATA ITEMS ───
+  var dataObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        dataObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.data-item').forEach(function(el) {
+    if (!prefersReduced) dataObserver.observe(el);
+    else el.classList.add('in-view');
+  });
+
+  // ─── ROADMAP ITEMS ───
+  var rmObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        rmObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.roadmap-item').forEach(function(el) {
+    if (!prefersReduced) rmObserver.observe(el);
+    else el.classList.add('in-view');
+  });
+
+  // ─── NOTE BOX ───
+  var noteObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        noteObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  // ─── PILL CLICK NAVIGATION ───
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      var target = document.getElementById(pill.getAttribute('data-target'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // ─── SCROLL LISTENER ───
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
+
+  // ─── INIT ACTIVE SECTION ───
+  setActiveSection('hero');
+
+})();
+</script>
+</body>
+</html>
