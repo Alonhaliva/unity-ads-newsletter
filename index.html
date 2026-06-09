@@ -797,6 +797,33 @@
       .needle-anim { transform: rotate(35deg) !important; }
     }
 
+    /* ─── CREATIVE SHOWCASE (phone mockups) ─── */
+    #creatives { background: #faf8f3; padding: 84px 60px; overflow: hidden; }
+    .creatives-head { max-width: 640px; margin: 0 auto; text-align: center; }
+    .creatives-kicker { color: var(--purple); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .creatives-title { font-size: clamp(28px, 3vw, 40px); font-weight: 900; color: var(--text); margin-bottom: 14px; line-height: 1.12; }
+    .creatives-sub { font-size: 17px; line-height: 1.6; color: #4a4a60; }
+    .phones { display: flex; gap: 30px; justify-content: center; align-items: flex-end; margin-top: 54px; flex-wrap: wrap; perspective: 1400px; }
+    .phone-wrap { text-align: center; }
+    .phone {
+      width: 232px; border-radius: 36px; background: #0d0a14; padding: 9px;
+      box-shadow: 0 44px 70px -34px rgba(20,16,31,0.55);
+      opacity: 0; transform: translateY(70px) rotate(var(--rot, 0deg));
+      transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+      will-change: transform; cursor: pointer;
+    }
+    .phone .screen { display: block; width: 100%; height: auto; border-radius: 28px; background: #fff; }
+    .phone-wrap:nth-child(1) .phone { --rot: -7deg; }
+    .phone-wrap:nth-child(2) .phone { --rot: 0deg; }
+    .phone-wrap:nth-child(3) .phone { --rot: 7deg; }
+    .phone.in-view { opacity: 1; transform: translateY(var(--py, 0px)) rotate(var(--rot, 0deg)); }
+    .phone-wrap:nth-child(2) .phone.in-view { transform: translateY(calc(-22px + var(--py, 0px))) rotate(0deg); }
+    .phone-wrap:nth-child(2) .phone { transition-delay: .12s; }
+    .phone-wrap:nth-child(3) .phone { transition-delay: .24s; }
+    .phone:hover { transform: translateY(-14px) rotate(0deg) scale(1.04) !important; box-shadow: 0 56px 96px -34px rgba(123,47,247,0.5); }
+    .phone-cap { margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--text); }
+    .phone-cap span { display: block; font-weight: 500; color: var(--muted); font-size: 12px; margin-top: 2px; }
+
     /* ─── FEATURED: THE VECTOR CODEX (epic banner) ─── */
     #codex-section { padding: 56px 60px; }
     .codex {
@@ -848,6 +875,10 @@
     @media (max-width: 900px) {
       #codex-section { padding: 40px 24px; }
       .codex { padding: 48px 20px 42px; }
+      #creatives { padding: 56px 22px; }
+      .phones { gap: 16px; }
+      .phone { width: 30%; min-width: 140px; }
+      .phone-wrap:nth-child(2) .phone.in-view { transform: translateY(0) rotate(0deg); }
       #rail { display: none; }
       #top-bar { display: block; }
       body { padding-top: 70px; }
@@ -1352,6 +1383,110 @@
       </p>
     </section>
 
+    <!-- ═══ CREATIVE SHOWCASE ═══ -->
+    <section id="creatives">
+      <div class="creatives-head">
+        <div class="creatives-kicker">✦ Coming with agentic Vector</div>
+        <h2 class="creatives-title">Creative is the next frontier</h2>
+        <p class="creatives-sub">GenAI Creative, Creative Optimization, and Creative Insights are on the way — so Vector won't just place your ads, it'll help you make the ones players actually tap. A taste of the playable formats winning right now:</p>
+      </div>
+      <div class="phones">
+
+        <!-- PHONE 1 — Jewel Coloring -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jewel Coloring playable ad mockup">
+              <rect width="210" height="410" rx="26" fill="#f4eefe"/>
+              <rect x="0" y="0" width="210" height="42" fill="#ffffff"/>
+              <circle cx="22" cy="21" r="9" fill="#ffd24d"/><text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
+              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#3a3a4e">Jewel Coloring</text>
+              <!-- bead heart -->
+              <g>
+                <circle cx="55"  cy="110" r="11" fill="#f72f9e"/><circle cx="155" cy="110" r="11" fill="#f72f9e"/>
+                <circle cx="55"  cy="135" r="11" fill="#ff5e8a"/><circle cx="80" cy="135" r="11" fill="#ff5e8a"/><circle cx="130" cy="135" r="11" fill="#ff5e8a"/><circle cx="155" cy="135" r="11" fill="#ff5e8a"/>
+                <circle cx="55"  cy="160" r="11" fill="#b324d6"/><circle cx="80" cy="160" r="11" fill="#f72f9e"/><circle cx="105" cy="160" r="11" fill="#ff5e8a"/><circle cx="130" cy="160" r="11" fill="#f72f9e"/><circle cx="155" cy="160" r="11" fill="#b324d6"/>
+                <circle cx="80"  cy="185" r="11" fill="#b324d6"/><circle cx="105" cy="185" r="11" fill="#f72f9e"/><circle cx="130" cy="185" r="11" fill="#b324d6"/>
+                <circle cx="105" cy="210" r="11" fill="#b324d6"/>
+              </g>
+              <!-- empty bead outlines -->
+              <g fill="none" stroke="#d9cdf0" stroke-width="2">
+                <circle cx="80" cy="110" r="11"/><circle cx="105" cy="110" r="11"/><circle cx="130" cy="110" r="11"/>
+                <circle cx="105" cy="135" r="11"/>
+              </g>
+              <!-- palette -->
+              <rect x="30" y="300" width="150" height="40" rx="20" fill="#ffffff"/>
+              <circle cx="55" cy="320" r="11" fill="#f72f9e"/><circle cx="85" cy="320" r="11" fill="#ff5e8a"/><circle cx="115" cy="320" r="11" fill="#b324d6"/><circle cx="145" cy="320" r="11" fill="#ffd24d" stroke="#fff" stroke-width="2"/>
+              <!-- play button -->
+              <rect x="55" y="360" width="100" height="30" rx="15" fill="#22c55e"/>
+              <text x="105" y="380" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Play Now</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Jewel Coloring<span>Playable · tap-to-fill</span></div>
+        </div>
+
+        <!-- PHONE 2 — Arrowscapes (maze) -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Arrowscapes maze playable ad mockup">
+              <rect width="210" height="410" rx="26" fill="#0a0e16"/>
+              <rect x="0" y="0" width="210" height="42" fill="#11161f"/>
+              <text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
+              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#cbd5e1">Arrowscapes</text>
+              <!-- faint grid -->
+              <g stroke="#1e2733" stroke-width="1">
+                <path d="M30 70H180M30 100H180M30 130H180M30 160H180M30 190H180M30 220H180M30 250H180M30 280H180"/>
+                <path d="M55 60V290M80 60V290M105 60V290M130 60V290M155 60V290"/>
+              </g>
+              <!-- glowing maze path -->
+              <path d="M40 270 H80 V150 H55 V90 H130 V190 H105 V250 H170 V120 H145"
+                    fill="none" stroke="#34f5a0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+                    style="filter:drop-shadow(0 0 6px #34f5a0);"/>
+              <circle cx="40" cy="270" r="7" fill="#f72f9e" style="filter:drop-shadow(0 0 6px #f72f9e);"/>
+              <circle cx="145" cy="120" r="6" fill="#ffe14d"/>
+              <!-- play button -->
+              <rect x="55" y="350" width="100" height="30" rx="15" fill="#34f5a0"/>
+              <text x="105" y="370" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#062a1b" text-anchor="middle">Play Now</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Arrowscapes<span>Playable · path puzzle</span></div>
+        </div>
+
+        <!-- PHONE 3 — Parking Jam -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parking Jam playable ad mockup">
+              <rect width="210" height="410" rx="26" fill="#e9ecf3"/>
+              <rect x="0" y="0" width="210" height="42" fill="#ffffff"/>
+              <text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
+              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#3a3a4e">Parking Jam</text>
+              <!-- lot -->
+              <rect x="24" y="60" width="162" height="230" rx="12" fill="#c9cfdb"/>
+              <g stroke="#aeb6c6" stroke-width="2" stroke-dasharray="5 6">
+                <path d="M24 110H186M24 160H186M24 210H186M24 260H186"/>
+              </g>
+              <!-- cars -->
+              <rect x="36" y="72"  width="44" height="28" rx="7" fill="#ef4444"/>
+              <rect x="96" y="72"  width="78" height="28" rx="7" fill="#3b82f6"/>
+              <rect x="36" y="122" width="78" height="28" rx="7" fill="#22c55e"/>
+              <rect x="130" y="122" width="44" height="28" rx="7" fill="#f59e0b"/>
+              <rect x="36" y="172" width="44" height="28" rx="7" fill="#a855f7"/>
+              <rect x="96" y="172" width="44" height="28" rx="7" fill="#ec4899"/>
+              <rect x="150" y="172" width="24" height="28" rx="7" fill="#14b8a6"/>
+              <rect x="36" y="222" width="60" height="28" rx="7" fill="#eab308"/>
+              <rect x="112" y="222" width="62" height="28" rx="7" fill="#ef4444"/>
+              <!-- exit arrow -->
+              <path d="M150 300 v22 M150 300 l-9 10 M150 300 l9 10" stroke="#22c55e" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <!-- play button -->
+              <rect x="55" y="350" width="100" height="30" rx="15" fill="#2563eb"/>
+              <text x="105" y="370" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Play Now</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Parking Jam<span>Playable · unblock-the-exit</span></div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ═══ 6. ROADMAP ═══ -->
     <section id="roadmap" style="padding:80px 60px;background:#fff;border-top:1px solid var(--border);">
       <div class="section-num fade-up" style="color:var(--pink);">06 — Roadmap</div>
@@ -1490,10 +1625,34 @@
     });
   }, { rootMargin: '0px 0px -80px 0px', threshold: 0.1 });
 
-  document.querySelectorAll('.fade-up, .bento-tile, .art-reveal, .case-study-card').forEach(function(el) {
+  document.querySelectorAll('.fade-up, .bento-tile, .art-reveal, .case-study-card, .phone').forEach(function(el) {
     if (!prefersReduced) fadeObserver.observe(el);
     else el.classList.add('in-view');
   });
+
+  // ─── CREATIVE PHONES: subtle parallax tilt on scroll ───
+  (function(){
+    var phones = Array.prototype.slice.call(document.querySelectorAll('#creatives .phone'));
+    var section = document.getElementById('creatives');
+    if (!phones.length || !section || prefersReduced) return;
+    var depths = [14, -8, 14];   // px of parallax drift per phone
+    var ticking = false;
+    function update(){
+      var rect = section.getBoundingClientRect();
+      var vh = window.innerHeight || 800;
+      // progress: -1 (below) → 0 (centered) → 1 (above)
+      var prog = (vh / 2 - (rect.top + rect.height / 2)) / vh;
+      prog = Math.max(-1, Math.min(1, prog));
+      phones.forEach(function(p, i){
+        p.style.setProperty('--py', (prog * (depths[i % depths.length])).toFixed(1) + 'px');
+      });
+      ticking = false;
+    }
+    function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
 
   // ─── BENTO tiles ───
   document.querySelectorAll('.bento-tile').forEach(function(el) {
