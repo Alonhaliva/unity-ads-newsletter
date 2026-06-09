@@ -380,6 +380,26 @@
     }
     .tile-emoji { font-size: 20px; margin-bottom: 8px; }
 
+    /* ─── AT A GLANCE: clean index ─── */
+    .glance-list { background: #fff; border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: 0 24px 60px -42px rgba(123,47,247,0.3); }
+    .glance-row { display: grid; grid-template-columns: 44px 1fr auto; gap: 20px; align-items: center; padding: 22px 26px; text-decoration: none; border-top: 1px solid var(--border); transition: background 0.15s ease; }
+    .glance-row:first-child { border-top: none; }
+    .glance-row:hover { background: #faf7ff; }
+    .glance-badge { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-weight: 800; font-size: 14px; color: #fff; }
+    .glance-main .gt { font-size: 17px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .glance-main .gt .arr { color: var(--purple); opacity: 0; transform: translateX(-4px); transition: 0.15s ease; }
+    .glance-row:hover .gt .arr { opacity: 1; transform: translateX(0); }
+    .glance-main .gd { font-size: 14px; line-height: 1.45; color: var(--muted); margin-top: 3px; }
+    .glance-tag { font-size: 11px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; padding: 6px 12px; border-radius: 30px; white-space: nowrap; }
+    .tag-live { color: #15803d; background: #e7f8ee; }
+    .tag-beta { color: #7b2ff7; background: #f1eafe; }
+    .tag-soon { color: #9a6b00; background: #fdf3da; }
+    @media (max-width: 620px) {
+      .glance-row { grid-template-columns: 34px 1fr; gap: 14px; padding: 18px; }
+      .glance-tag { grid-column: 2; justify-self: start; margin-top: 8px; }
+      .glance-badge { width: 32px; height: 32px; font-size: 13px; }
+    }
+
     /* ─── SECTION HEADINGS ─── */
     .section-heading {
       font-size: clamp(28px, 3vw, 40px);
@@ -1079,39 +1099,55 @@
     <!-- ═══ AT A GLANCE ═══ -->
     <section id="glance">
       <div class="section-eyebrow">Everything in one glance</div>
-      <div class="bento-grid">
-        <div class="bento-tile hero-tile" style="transition-delay:0s;">
-          <div class="tile-tag">&#x1F4C8; Headline</div>
-          <div class="tile-title">D28 ROAS, expanded</div>
-          <div class="tile-sub">IAP is live &middot; Ad Revenue &amp; Hybrid now in open beta, worldwide</div>
-        </div>
-        <div class="bento-row">
-          <div class="bento-tile sky-tile" style="transition-delay:0.08s;">
-            <div class="tile-emoji">&#x26A1;</div>
-            <div class="tile-title">Faster ROAS</div>
-            <div class="tile-sub">Launch from day one</div>
+      <div class="glance-list fade-up">
+        <a class="glance-row" href="#d28">
+          <div class="glance-badge" style="background:#7b2ff7;">01</div>
+          <div class="glance-main">
+            <div class="gt">D28 ROAS, expanded <span class="arr">&rarr;</span></div>
+            <div class="gd">IAP is live; Ad Revenue &amp; Hybrid now in open beta, worldwide.</div>
           </div>
-          <div class="bento-tile indigo-tile" style="transition-delay:0.16s;">
-            <div class="tile-emoji">&#x2728;</div>
-            <div class="tile-title">New dashboard</div>
-            <div class="tile-sub">Live since May 19</div>
+          <div class="glance-tag tag-beta">Live + beta</div>
+        </a>
+        <a class="glance-row" href="#roas">
+          <div class="glance-badge" style="background:#0ea5e9;">02</div>
+          <div class="glance-main">
+            <div class="gt">Faster ROAS onboarding <span class="arr">&rarr;</span></div>
+            <div class="gd">Launch from day one — no detour through CPI.</div>
           </div>
-        </div>
-        <div class="bento-row">
-          <div class="bento-tile green-tile" style="transition-delay:0.24s;">
-            <div class="tile-emoji">&#x1F3CE;&#xFE0F;</div>
-            <div class="tile-title">SDK 4.18+</div>
-            <div class="tile-sub">Up to 59% faster init</div>
+          <div class="glance-tag tag-live">Improved</div>
+        </a>
+        <a class="glance-row" href="#dashboard">
+          <div class="glance-badge" style="background:#312e81;">03</div>
+          <div class="glance-main">
+            <div class="gt">A cleaner dashboard <span class="arr">&rarr;</span></div>
+            <div class="gd">One Unity — Develop, Acquire, Monetize, in one place.</div>
           </div>
-          <div class="bento-tile blue-tile" style="transition-delay:0.32s;">
-            <div class="tile-emoji">&#x1F50C;</div>
-            <div class="tile-title">Strengthen your data</div>
-            <div class="tile-sub">Google Analytics linking &amp; the Developer Data Framework — fuller signals for Vector</div>
+          <div class="glance-tag tag-live">Live &middot; May 19</div>
+        </a>
+        <a class="glance-row" href="#sdk">
+          <div class="glance-badge" style="background:#15803d;">04</div>
+          <div class="glance-main">
+            <div class="gt">SDK 4.18+ <span class="arr">&rarr;</span></div>
+            <div class="gd">Up to 59% faster init and cleaner runtime signals.</div>
           </div>
-        </div>
-        <div class="bento-tile pink-tile" style="transition-delay:0.4s;">
-          <div class="tile-sub"><span style="font-size:16px;">&#x1F6E3;&#xFE0F;</span> &nbsp;<strong style="color:#fff;">Coming next:</strong> CPE Retention &amp; Payer campaigns, and a more agentic Vector.</div>
-        </div>
+          <div class="glance-tag tag-live">Update</div>
+        </a>
+        <a class="glance-row" href="#data">
+          <div class="glance-badge" style="background:#2563eb;">05</div>
+          <div class="glance-main">
+            <div class="gt">Strengthen your data <span class="arr">&rarr;</span></div>
+            <div class="gd">Google Analytics linking &amp; the Developer Data Framework — fuller signals for Vector.</div>
+          </div>
+          <div class="glance-tag tag-live">New links</div>
+        </a>
+        <a class="glance-row" href="#roadmap">
+          <div class="glance-badge" style="background:#c026d3;">06</div>
+          <div class="glance-main">
+            <div class="gt">Coming next <span class="arr">&rarr;</span></div>
+            <div class="gd">CPE Retention &amp; Payer campaigns, and a more agentic Vector.</div>
+          </div>
+          <div class="glance-tag tag-soon">Roadmap</div>
+        </a>
       </div>
     </section>
 
