@@ -296,6 +296,24 @@
     }
     .hero-intro strong { color: var(--text); }
 
+    /* hero Q1 performance card */
+    .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 26px; align-items: center; margin-bottom: 36px; position: relative; z-index: 1; }
+    .hero-grid .hero-art { margin-bottom: 0; }
+    .hero-perf {
+      background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 22px;
+      box-shadow: 0 26px 54px -32px rgba(123,47,247,0.4);
+      display: flex; flex-direction: column; gap: 13px;
+    }
+    .hero-perf-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .hero-perf-label { font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+    .hero-perf-badge { font-size: 11.5px; font-weight: 800; color: #15803d; background: #e7f8ee; padding: 5px 11px; border-radius: 20px; white-space: nowrap; }
+    .hero-perf h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.25; margin: 0; letter-spacing: -0.01em; }
+    .hero-perf-chart { width: 100%; height: auto; }
+    .hero-perf-list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .hero-perf-list li { display: flex; gap: 9px; font-size: 13.5px; line-height: 1.4; color: #3a3a4e; }
+    .hero-perf-list .ck { color: #15803d; font-weight: 900; flex: none; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 18px; } }
+
     /* ─── GLANCE BENTO ─── */
     #glance {
       background: var(--light-bg);
@@ -993,6 +1011,7 @@
     <section id="hero">
       <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>A note from the Unity Ads team</div>
       <h1 class="hero-title">A lot has<br>changed <span>this quarter.</span></h1>
+      <div class="hero-grid">
       <div class="hero-art">
         <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rocket launching past floating product tags" style="width:100%;height:auto;border-radius:20px;">
           <defs>
@@ -1029,6 +1048,28 @@
           </g>
         </svg>
       </div>
+      <aside class="hero-perf">
+        <div class="hero-perf-top">
+          <span class="hero-perf-label">Q1 2026</span>
+          <span class="hero-perf-badge">&#9650; Above expectations</span>
+        </div>
+        <h3>A bigger quarter than the quiet season usually brings.</h3>
+        <svg class="hero-perf-chart" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A rising trend line climbing above the typical-Q1 baseline">
+          <defs><linearGradient id="perfg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7b2ff7"/><stop offset="1" stop-color="#f72f9e"/></linearGradient></defs>
+          <line x1="0" y1="62" x2="300" y2="62" stroke="#d9cdf0" stroke-width="2" stroke-dasharray="4 5"/>
+          <text x="2" y="78" font-family="Inter,Arial,sans-serif" font-size="9.5" fill="#9a93ad">typical Q1</text>
+          <path d="M0,84 C70,78 120,72 165,54 C210,36 255,24 294,15 L294,100 L0,100 Z" fill="url(#perfg)" opacity="0.13"/>
+          <path d="M0,84 C70,78 120,72 165,54 C210,36 255,24 294,15" fill="none" stroke="url(#perfg)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="294" cy="15" r="5" fill="#15803d"/>
+          <text x="206" y="12" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="700" fill="#15803d">this year</text>
+        </svg>
+        <ul class="hero-perf-list">
+          <li><span class="ck">&#10003;</span> User quality up across almost every campaign type</li>
+          <li><span class="ck">&#10003;</span> Stronger on both Android &amp; iOS</li>
+          <li><span class="ck">&#10003;</span> Scale topped the holiday peak in several categories</li>
+        </ul>
+      </aside>
+      </div><!-- /hero-grid -->
       <div class="hero-intro">
         <p>Q1 is usually our quiet quarter. The holiday rush is over, everyone&rsquo;s catching their breath, and things tend to slow down.</p>
         <p>This year they didn&rsquo;t. User quality improved across almost every campaign type, on both Android and iOS, and in a few categories scale even topped the holiday peak. That&rsquo;s not a seasonal bump &mdash; it&rsquo;s <strong>Vector</strong>, the AI behind Unity Ads, steadily getting better. (Google Cloud even <a href="https://cloud.google.com/blog/products/compute/whats-new-in-compute-at-next26">highlighted</a> how efficiently Vector now scales real-time AI behind the scenes.) Here&rsquo;s what came out of it.</p>
@@ -1074,40 +1115,107 @@
       </div>
     </section>
 
-    <!-- ═══ FEATURED: THE VECTOR CODEX ═══ -->
-    <section id="codex-section">
-      <div class="codex">
-        <div class="rays"></div>
-        <svg class="stars" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <g fill="#ffffff">
-            <circle cx="70" cy="60" r="2.5"/><circle cx="150" cy="120" r="1.8"/><circle cx="500" cy="70" r="2.8"/>
-            <circle cx="430" cy="150" r="1.6"/><circle cx="90" cy="220" r="2"/><circle cx="540" cy="240" r="2.4"/>
-            <circle cx="300" cy="40" r="1.6"/><circle cx="250" cy="300" r="2"/><circle cx="380" cy="280" r="1.8"/>
-            <circle cx="190" cy="40" r="1.4"/><circle cx="560" cy="160" r="1.6"/><circle cx="40" cy="150" r="1.6"/>
-          </g>
-        </svg>
-        <div class="codex-icon">
-          <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A glowing rocket haloed in light">
-            <defs>
-              <linearGradient id="codexflame" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ffe14d"/><stop offset="1" stop-color="#ff7a45"/>
-              </linearGradient>
-            </defs>
-            <circle cx="60" cy="44" r="33" fill="rgba(255,231,150,0.10)"/>
-            <circle cx="60" cy="44" r="33" fill="none" stroke="#ffe796" stroke-width="2.5" opacity="0.9"/>
-            <g transform="translate(60 64) scale(0.7)">
-              <path d="M0,-46 C21,-26 21,54 0,74 C-21,54 -21,-26 0,-46 Z" fill="#ffffff"/>
-              <circle cx="0" cy="2" r="12" fill="#7b2ff7"/>
-              <path d="M-19,46 L-38,78 L-13,63 Z" fill="#ffd0ec"/>
-              <path d="M19,46 L38,78 L13,63 Z" fill="#ffd0ec"/>
-              <path d="M-11,74 C-11,104 11,104 11,74 C6,91 -6,91 -11,74 Z" fill="url(#codexflame)"/>
-            </g>
-          </svg>
+    <!-- ═══ CREATIVE SHOWCASE ═══ -->
+    <section id="creatives">
+      <div class="creatives-head">
+        <div class="creatives-kicker">✦ Coming with agentic Vector</div>
+        <h2 class="creatives-title">Creative is the next frontier</h2>
+        <p class="creatives-sub">GenAI Creative, Creative Optimization, and Creative Insights are on the way — so Vector won't just place your ads, it'll help you make the ones players actually tap. A taste of the playable formats winning right now:</p>
+      </div>
+      <div class="phones">
+
+        <!-- PHONE 1 — Jewel Coloring -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jewel Coloring playable ad mockup">
+              <rect width="210" height="410" rx="26" fill="#f4eefe"/>
+              <rect x="0" y="0" width="210" height="42" fill="#ffffff"/>
+              <circle cx="22" cy="21" r="9" fill="#ffd24d"/><text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
+              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#3a3a4e">Jewel Coloring</text>
+              <!-- bead heart -->
+              <g>
+                <circle cx="55"  cy="110" r="11" fill="#f72f9e"/><circle cx="155" cy="110" r="11" fill="#f72f9e"/>
+                <circle cx="55"  cy="135" r="11" fill="#ff5e8a"/><circle cx="80" cy="135" r="11" fill="#ff5e8a"/><circle cx="130" cy="135" r="11" fill="#ff5e8a"/><circle cx="155" cy="135" r="11" fill="#ff5e8a"/>
+                <circle cx="55"  cy="160" r="11" fill="#b324d6"/><circle cx="80" cy="160" r="11" fill="#f72f9e"/><circle cx="105" cy="160" r="11" fill="#ff5e8a"/><circle cx="130" cy="160" r="11" fill="#f72f9e"/><circle cx="155" cy="160" r="11" fill="#b324d6"/>
+                <circle cx="80"  cy="185" r="11" fill="#b324d6"/><circle cx="105" cy="185" r="11" fill="#f72f9e"/><circle cx="130" cy="185" r="11" fill="#b324d6"/>
+                <circle cx="105" cy="210" r="11" fill="#b324d6"/>
+              </g>
+              <!-- empty bead outlines -->
+              <g fill="none" stroke="#d9cdf0" stroke-width="2">
+                <circle cx="80" cy="110" r="11"/><circle cx="105" cy="110" r="11"/><circle cx="130" cy="110" r="11"/>
+                <circle cx="105" cy="135" r="11"/>
+              </g>
+              <!-- palette -->
+              <rect x="30" y="300" width="150" height="40" rx="20" fill="#ffffff"/>
+              <circle cx="55" cy="320" r="11" fill="#f72f9e"/><circle cx="85" cy="320" r="11" fill="#ff5e8a"/><circle cx="115" cy="320" r="11" fill="#b324d6"/><circle cx="145" cy="320" r="11" fill="#ffd24d" stroke="#fff" stroke-width="2"/>
+              <!-- play button -->
+              <rect x="55" y="360" width="100" height="30" rx="15" fill="#22c55e"/>
+              <text x="105" y="380" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Play Now</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Jewel Coloring<span>Playable · tap-to-fill</span></div>
         </div>
-        <div class="codex-kicker">&#10022;&nbsp; The 2026 Growth Scriptures &nbsp;&#10022;</div>
-        <h2 class="codex-title">The Vector Codex</h2>
-        <p class="codex-sub">Everything that changed this quarter — the new gospel of D28, a faster SDK, and a smarter Vector — canonized in one scroll.</p>
-        <a class="codex-cta" href="#d28">Read the scriptures &darr;</a>
+
+        <!-- PHONE 2 — Arrowscapes (maze) -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Arrowscapes maze playable ad mockup">
+              <rect width="210" height="410" rx="26" fill="#0a0e16"/>
+              <rect x="0" y="0" width="210" height="42" fill="#11161f"/>
+              <text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
+              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#cbd5e1">Arrowscapes</text>
+              <!-- faint grid -->
+              <g stroke="#1e2733" stroke-width="1">
+                <path d="M30 70H180M30 100H180M30 130H180M30 160H180M30 190H180M30 220H180M30 250H180M30 280H180"/>
+                <path d="M55 60V290M80 60V290M105 60V290M130 60V290M155 60V290"/>
+              </g>
+              <!-- glowing maze path -->
+              <path d="M40 270 H80 V150 H55 V90 H130 V190 H105 V250 H170 V120 H145"
+                    fill="none" stroke="#34f5a0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
+                    style="filter:drop-shadow(0 0 6px #34f5a0);"/>
+              <circle cx="40" cy="270" r="7" fill="#f72f9e" style="filter:drop-shadow(0 0 6px #f72f9e);"/>
+              <circle cx="145" cy="120" r="6" fill="#ffe14d"/>
+              <!-- play button -->
+              <rect x="55" y="350" width="100" height="30" rx="15" fill="#34f5a0"/>
+              <text x="105" y="370" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#062a1b" text-anchor="middle">Play Now</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Arrowscapes<span>Playable · path puzzle</span></div>
+        </div>
+
+        <!-- PHONE 3 — Parking Jam -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parking Jam playable ad mockup">
+              <rect width="210" height="410" rx="26" fill="#e9ecf3"/>
+              <rect x="0" y="0" width="210" height="42" fill="#ffffff"/>
+              <text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
+              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#3a3a4e">Parking Jam</text>
+              <!-- lot -->
+              <rect x="24" y="60" width="162" height="230" rx="12" fill="#c9cfdb"/>
+              <g stroke="#aeb6c6" stroke-width="2" stroke-dasharray="5 6">
+                <path d="M24 110H186M24 160H186M24 210H186M24 260H186"/>
+              </g>
+              <!-- cars -->
+              <rect x="36" y="72"  width="44" height="28" rx="7" fill="#ef4444"/>
+              <rect x="96" y="72"  width="78" height="28" rx="7" fill="#3b82f6"/>
+              <rect x="36" y="122" width="78" height="28" rx="7" fill="#22c55e"/>
+              <rect x="130" y="122" width="44" height="28" rx="7" fill="#f59e0b"/>
+              <rect x="36" y="172" width="44" height="28" rx="7" fill="#a855f7"/>
+              <rect x="96" y="172" width="44" height="28" rx="7" fill="#ec4899"/>
+              <rect x="150" y="172" width="24" height="28" rx="7" fill="#14b8a6"/>
+              <rect x="36" y="222" width="60" height="28" rx="7" fill="#eab308"/>
+              <rect x="112" y="222" width="62" height="28" rx="7" fill="#ef4444"/>
+              <!-- exit arrow -->
+              <path d="M150 300 v22 M150 300 l-9 10 M150 300 l9 10" stroke="#22c55e" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <!-- play button -->
+              <rect x="55" y="350" width="100" height="30" rx="15" fill="#2563eb"/>
+              <text x="105" y="370" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Play Now</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Parking Jam<span>Playable · unblock-the-exit</span></div>
+        </div>
+
       </div>
     </section>
 
@@ -1381,110 +1489,6 @@
       <p class="section-body fade-up" style="color:#3a3a4e;max-width:620px;margin-top:28px;">
         And on the privacy side: Unity recently <a href="https://unity.com/blog/unity-joins-iab-europe-tcf-compliant-data-use-advertising" style="color:#7b2ff7;border-bottom:1px solid rgba(123,47,247,0.3);">joined IAB Europe&rsquo;s Transparency &amp; Consent Framework</a> &mdash; a recognized industry standard for collecting and respecting user consent across European markets. As you connect more signals, they&rsquo;re handled to that standard.
       </p>
-    </section>
-
-    <!-- ═══ CREATIVE SHOWCASE ═══ -->
-    <section id="creatives">
-      <div class="creatives-head">
-        <div class="creatives-kicker">✦ Coming with agentic Vector</div>
-        <h2 class="creatives-title">Creative is the next frontier</h2>
-        <p class="creatives-sub">GenAI Creative, Creative Optimization, and Creative Insights are on the way — so Vector won't just place your ads, it'll help you make the ones players actually tap. A taste of the playable formats winning right now:</p>
-      </div>
-      <div class="phones">
-
-        <!-- PHONE 1 — Jewel Coloring -->
-        <div class="phone-wrap">
-          <div class="phone">
-            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Jewel Coloring playable ad mockup">
-              <rect width="210" height="410" rx="26" fill="#f4eefe"/>
-              <rect x="0" y="0" width="210" height="42" fill="#ffffff"/>
-              <circle cx="22" cy="21" r="9" fill="#ffd24d"/><text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
-              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#3a3a4e">Jewel Coloring</text>
-              <!-- bead heart -->
-              <g>
-                <circle cx="55"  cy="110" r="11" fill="#f72f9e"/><circle cx="155" cy="110" r="11" fill="#f72f9e"/>
-                <circle cx="55"  cy="135" r="11" fill="#ff5e8a"/><circle cx="80" cy="135" r="11" fill="#ff5e8a"/><circle cx="130" cy="135" r="11" fill="#ff5e8a"/><circle cx="155" cy="135" r="11" fill="#ff5e8a"/>
-                <circle cx="55"  cy="160" r="11" fill="#b324d6"/><circle cx="80" cy="160" r="11" fill="#f72f9e"/><circle cx="105" cy="160" r="11" fill="#ff5e8a"/><circle cx="130" cy="160" r="11" fill="#f72f9e"/><circle cx="155" cy="160" r="11" fill="#b324d6"/>
-                <circle cx="80"  cy="185" r="11" fill="#b324d6"/><circle cx="105" cy="185" r="11" fill="#f72f9e"/><circle cx="130" cy="185" r="11" fill="#b324d6"/>
-                <circle cx="105" cy="210" r="11" fill="#b324d6"/>
-              </g>
-              <!-- empty bead outlines -->
-              <g fill="none" stroke="#d9cdf0" stroke-width="2">
-                <circle cx="80" cy="110" r="11"/><circle cx="105" cy="110" r="11"/><circle cx="130" cy="110" r="11"/>
-                <circle cx="105" cy="135" r="11"/>
-              </g>
-              <!-- palette -->
-              <rect x="30" y="300" width="150" height="40" rx="20" fill="#ffffff"/>
-              <circle cx="55" cy="320" r="11" fill="#f72f9e"/><circle cx="85" cy="320" r="11" fill="#ff5e8a"/><circle cx="115" cy="320" r="11" fill="#b324d6"/><circle cx="145" cy="320" r="11" fill="#ffd24d" stroke="#fff" stroke-width="2"/>
-              <!-- play button -->
-              <rect x="55" y="360" width="100" height="30" rx="15" fill="#22c55e"/>
-              <text x="105" y="380" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Play Now</text>
-            </svg>
-          </div>
-          <div class="phone-cap">Jewel Coloring<span>Playable · tap-to-fill</span></div>
-        </div>
-
-        <!-- PHONE 2 — Arrowscapes (maze) -->
-        <div class="phone-wrap">
-          <div class="phone">
-            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Arrowscapes maze playable ad mockup">
-              <rect width="210" height="410" rx="26" fill="#0a0e16"/>
-              <rect x="0" y="0" width="210" height="42" fill="#11161f"/>
-              <text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
-              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#cbd5e1">Arrowscapes</text>
-              <!-- faint grid -->
-              <g stroke="#1e2733" stroke-width="1">
-                <path d="M30 70H180M30 100H180M30 130H180M30 160H180M30 190H180M30 220H180M30 250H180M30 280H180"/>
-                <path d="M55 60V290M80 60V290M105 60V290M130 60V290M155 60V290"/>
-              </g>
-              <!-- glowing maze path -->
-              <path d="M40 270 H80 V150 H55 V90 H130 V190 H105 V250 H170 V120 H145"
-                    fill="none" stroke="#34f5a0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"
-                    style="filter:drop-shadow(0 0 6px #34f5a0);"/>
-              <circle cx="40" cy="270" r="7" fill="#f72f9e" style="filter:drop-shadow(0 0 6px #f72f9e);"/>
-              <circle cx="145" cy="120" r="6" fill="#ffe14d"/>
-              <!-- play button -->
-              <rect x="55" y="350" width="100" height="30" rx="15" fill="#34f5a0"/>
-              <text x="105" y="370" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#062a1b" text-anchor="middle">Play Now</text>
-            </svg>
-          </div>
-          <div class="phone-cap">Arrowscapes<span>Playable · path puzzle</span></div>
-        </div>
-
-        <!-- PHONE 3 — Parking Jam -->
-        <div class="phone-wrap">
-          <div class="phone">
-            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Parking Jam playable ad mockup">
-              <rect width="210" height="410" rx="26" fill="#e9ecf3"/>
-              <rect x="0" y="0" width="210" height="42" fill="#ffffff"/>
-              <text x="22" y="25" font-family="Inter,Arial" font-size="11" text-anchor="middle">🏆</text>
-              <text x="40" y="25" font-family="Inter,Arial" font-size="10.5" font-weight="700" fill="#3a3a4e">Parking Jam</text>
-              <!-- lot -->
-              <rect x="24" y="60" width="162" height="230" rx="12" fill="#c9cfdb"/>
-              <g stroke="#aeb6c6" stroke-width="2" stroke-dasharray="5 6">
-                <path d="M24 110H186M24 160H186M24 210H186M24 260H186"/>
-              </g>
-              <!-- cars -->
-              <rect x="36" y="72"  width="44" height="28" rx="7" fill="#ef4444"/>
-              <rect x="96" y="72"  width="78" height="28" rx="7" fill="#3b82f6"/>
-              <rect x="36" y="122" width="78" height="28" rx="7" fill="#22c55e"/>
-              <rect x="130" y="122" width="44" height="28" rx="7" fill="#f59e0b"/>
-              <rect x="36" y="172" width="44" height="28" rx="7" fill="#a855f7"/>
-              <rect x="96" y="172" width="44" height="28" rx="7" fill="#ec4899"/>
-              <rect x="150" y="172" width="24" height="28" rx="7" fill="#14b8a6"/>
-              <rect x="36" y="222" width="60" height="28" rx="7" fill="#eab308"/>
-              <rect x="112" y="222" width="62" height="28" rx="7" fill="#ef4444"/>
-              <!-- exit arrow -->
-              <path d="M150 300 v22 M150 300 l-9 10 M150 300 l9 10" stroke="#22c55e" stroke-width="5" fill="none" stroke-linecap="round"/>
-              <!-- play button -->
-              <rect x="55" y="350" width="100" height="30" rx="15" fill="#2563eb"/>
-              <text x="105" y="370" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#ffffff" text-anchor="middle">Play Now</text>
-            </svg>
-          </div>
-          <div class="phone-cap">Parking Jam<span>Playable · unblock-the-exit</span></div>
-        </div>
-
-      </div>
     </section>
 
     <!-- ═══ 6. ROADMAP ═══ -->
