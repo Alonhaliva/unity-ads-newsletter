@@ -7,6 +7,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=UnifrakturCook:wght@700&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+  <!-- ─── ANALYTICS (GA4) ───────────────────────────────────────────────
+       Paste your GA4 Measurement ID (looks like G-XXXXXXXXXX) below.
+       Get one at analytics.google.com → Admin → Data Streams → Web.
+       Until it's filled in, no tracking runs. ──────────────────────────── -->
+  <script>window.NEWSLETTER_GA_ID = "";</script>
+  <script>
+    (function(){
+      var id = window.NEWSLETTER_GA_ID;
+      if (!id) return;
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', id);
+    })();
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1851,6 +1870,54 @@
   // ─── INIT ACTIVE SECTION ───
   setActiveSection('hero');
 
+})();
+</script>
+
+<!-- ─── ANALYTICS EVENT TRACKING ─── -->
+<script>
+(function(){
+  function track(name, params){
+    if (typeof window.gtag === 'function') { window.gtag('event', name, params || {}); }
+  }
+
+  // Primary CTA: "Talk to your Unity team" (mailto) — the conversation goal
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+    a.addEventListener('click', function(){ track('cta_talk_to_team'); });
+  });
+
+  // "At a glance" index clicks — which topics pull interest
+  document.querySelectorAll('.glance-row').forEach(function(a){
+    a.addEventListener('click', function(){ track('glance_click', { section: a.getAttribute('href') }); });
+  });
+
+  // Side-rail chapter clicks
+  document.querySelectorAll('.nav-item[data-section]').forEach(function(a){
+    a.addEventListener('click', function(){ track('nav_click', { section: a.getAttribute('data-section') }); });
+  });
+
+  // Manage preferences / Unsubscribe
+  var pref = document.querySelector('a[href*="create.unity.com"]');
+  if (pref) pref.addEventListener('click', function(){ track('manage_preferences_click'); });
+  var unsub = document.querySelector('a[href="unsubscribe.html"]');
+  if (unsub) unsub.addEventListener('click', function(){ track('unsubscribe_click'); });
+
+  // Outbound case-study / reference links
+  document.querySelectorAll('a[href^="http"]').forEach(function(a){
+    if (/unity\.com\/resources|cloud\.google\.com|iab/i.test(a.href)) {
+      a.addEventListener('click', function(){ track('outbound_click', { url: a.href }); });
+    }
+  });
+
+  // Scroll-depth milestones — engagement / how far they read
+  var marks = [25, 50, 75, 100], hit = {};
+  function onScroll(){
+    var d = document.documentElement;
+    var max = d.scrollHeight - d.clientHeight;
+    if (max <= 0) return;
+    var pct = (d.scrollTop / max) * 100;
+    marks.forEach(function(m){ if (!hit[m] && pct >= m) { hit[m] = 1; track('scroll_depth', { percent: m }); } });
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
 })();
 </script>
 </body>
