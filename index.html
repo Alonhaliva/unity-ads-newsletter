@@ -331,6 +331,13 @@
     .hero-perf-list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
     .hero-perf-list li { display: flex; gap: 9px; font-size: 13.5px; line-height: 1.4; color: #3a3a4e; }
     .hero-perf-list .ck { color: #15803d; font-weight: 900; flex: none; }
+    .hero-perf-list strong { color: var(--text); font-weight: 800; }
+    .hero-perf-stat { display: flex; align-items: baseline; gap: 12px; }
+    .hpn { font-size: 40px; font-weight: 900; line-height: 1; background: linear-gradient(120deg, #7b2ff7, #f72f9e); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hps { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .hps span { font-weight: 500; color: var(--muted); }
+    .hero-perf-src { font-size: 11.5px; font-weight: 700; color: var(--purple); text-decoration: none; border-bottom: 1px solid rgba(123,47,247,0.3); align-self: flex-start; }
+    .hero-perf-src:hover { border-bottom-color: var(--purple); }
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 18px; } }
 
     /* ─── GLANCE BENTO ─── */
@@ -1089,10 +1096,13 @@
       </div>
       <aside class="hero-perf">
         <div class="hero-perf-top">
-          <span class="hero-perf-label">Q1 2026</span>
-          <span class="hero-perf-badge">&#9650; Above expectations</span>
+          <span class="hero-perf-label">Q1 2026 results</span>
+          <span class="hero-perf-badge">&#9650; +24% YoY</span>
         </div>
-        <h3>A bigger quarter than the quiet season usually brings.</h3>
+        <div class="hero-perf-stat">
+          <span class="hpn">$352M</span>
+          <span class="hps">Grow Solutions revenue<br><span>Unity&rsquo;s ads &amp; growth segment</span></span>
+        </div>
         <svg class="hero-perf-chart" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A rising trend line climbing above the typical-Q1 baseline">
           <defs><linearGradient id="perfg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7b2ff7"/><stop offset="1" stop-color="#f72f9e"/></linearGradient></defs>
           <line x1="0" y1="62" x2="300" y2="62" stroke="#d9cdf0" stroke-width="2" stroke-dasharray="4 5"/>
@@ -1103,10 +1113,11 @@
           <text x="206" y="12" font-family="Inter,Arial,sans-serif" font-size="9.5" font-weight="700" fill="#15803d">this year</text>
         </svg>
         <ul class="hero-perf-list">
-          <li><span class="ck">&#10003;</span> User quality up across almost every campaign type</li>
-          <li><span class="ck">&#10003;</span> Stronger on both Android &amp; iOS</li>
-          <li><span class="ck">&#10003;</span> Scale topped the holiday peak in several categories</li>
+          <li><span class="ck">&#10003;</span> Total Unity revenue <strong>$508M</strong>, up 17% YoY</li>
+          <li><span class="ck">&#10003;</span> Adjusted EBITDA <strong>$138M</strong> &mdash; 27% margin</li>
+          <li><span class="ck">&#10003;</span> Ad user quality up across almost every campaign type</li>
         </ul>
+        <a class="hero-perf-src" href="https://investors.unity.com/news/news-details/2026/Unity-Reports-First-Quarter-2026-Financial-Results/default.aspx" target="_blank" rel="noopener">Source: Unity Q1 2026 financial results &rarr;</a>
       </aside>
       </div><!-- /hero-grid -->
       <div class="hero-intro">
