@@ -978,6 +978,41 @@
     .phone-cap { margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--text); }
     .phone-cap span { display: block; font-weight: 500; color: var(--muted); font-size: 12px; margin-top: 2px; }
 
+    /* ─── PERFORMANCE STATS STRIP (below phones) ─── */
+    .perf-strip {
+      display: flex; gap: 0; background: #0d0a14; border-radius: 20px;
+      overflow: hidden; margin-top: 44px; max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .perf-stat { flex: 1; padding: 22px 18px; border-right: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .perf-stat:last-child { border-right: none; }
+    .perf-num {
+      font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 7px;
+      background: linear-gradient(135deg, #7b2ff7, #f72f9e);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .perf-label { font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,0.62); }
+    .perf-src { display: block; font-size: 9.5px; color: rgba(255,255,255,0.28); margin-top: 5px; letter-spacing: 0.4px; }
+    @media (max-width: 600px) {
+      .perf-strip { flex-direction: column; }
+      .perf-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .perf-stat:last-child { border-bottom: none; }
+    }
+
+    /* ─── SECTION ART GRID (phone alongside text) ─── */
+    .section-art-grid {
+      display: grid; grid-template-columns: 1fr 220px; gap: 36px; align-items: start;
+      margin: 28px 0 16px;
+    }
+    .section-art-phone { display: flex; justify-content: center; padding-top: 6px; }
+    .section-art-phone .phone { width: 200px; border-radius: 30px; padding: 8px; }
+    .section-art-phone .phone.in-view {
+      opacity: 1; transform: translateY(0) rotate(var(--rot, 3deg)) !important;
+    }
+    @media (max-width: 760px) {
+      .section-art-grid { grid-template-columns: 1fr; }
+      .section-art-phone { order: -1; }
+    }
+
     /* ─── FEATURED: THE VECTOR CODEX (epic banner) ─── */
     #codex-section { padding: 56px 60px; }
     .codex {
@@ -1319,9 +1354,9 @@
     <!-- ═══ CREATIVE SHOWCASE ═══ -->
     <section id="creatives">
       <div class="creatives-head">
-        <div class="creatives-kicker">✦ Coming with agentic Vector</div>
+        <div class="creatives-kicker">✦ The highest-performing mobile ad formats</div>
         <h2 class="creatives-title">Creative is the next frontier</h2>
-        <p class="creatives-sub">GenAI Creative, Creative Optimization, and Creative Insights are on the way — so Vector won't just place your ads, it'll help you make the ones players actually tap. A taste of the playable formats winning right now:</p>
+        <p class="creatives-sub">Video and Playable consistently outperform every other mobile ad format — playables drive <strong>20× more installs</strong> than banners, and video drives <strong>14×</strong>. GenAI Creative, Creative Optimization, and Creative Insights are coming with agentic Vector, so it won't just place your ads — it'll help you make the ones that win. A taste of the formats winning right now:</p>
       </div>
       <div class="phones">
 
@@ -1417,7 +1452,93 @@
           <div class="phone-cap">Parking Jam<span>Playable · unblock-the-exit</span></div>
         </div>
 
+        <!-- PHONE 4 — Video Ad (Galaxy Strike) -->
+        <div class="phone-wrap">
+          <div class="phone">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Video ad mockup — Galaxy Strike game cinematic">
+              <defs>
+                <linearGradient id="vad-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0533"/><stop offset="1" stop-color="#0d0a14"/></linearGradient>
+                <radialGradient id="vad-glow" cx="50%" cy="42%"><stop offset="0" stop-color="#7b2ff7" stop-opacity=".45"/><stop offset="100%" stop-color="#7b2ff7" stop-opacity="0"/></radialGradient>
+              </defs>
+              <!-- Background -->
+              <rect width="210" height="410" rx="26" fill="url(#vad-bg)"/>
+              <ellipse cx="105" cy="155" rx="115" ry="90" fill="url(#vad-glow)"/>
+              <!-- Stars -->
+              <circle cx="25" cy="58" r="1.5" fill="#fff" opacity=".8"/><circle cx="70" cy="46" r="1" fill="#fff" opacity=".5"/>
+              <circle cx="142" cy="42" r="2" fill="#fff" opacity=".7"/><circle cx="188" cy="62" r="1" fill="#fff" opacity=".45"/>
+              <circle cx="55" cy="82" r="1.5" fill="#c4b5fd" opacity=".6"/><circle cx="177" cy="88" r="1" fill="#c4b5fd" opacity=".5"/>
+              <circle cx="105" cy="52" r="1" fill="#fff" opacity=".4"/><circle cx="162" cy="70" r="1.5" fill="#a78bfa" opacity=".55"/>
+              <!-- Status bar -->
+              <rect x="0" y="0" width="210" height="36" fill="rgba(0,0,0,0.5)"/>
+              <text x="12" y="23" font-family="Inter,Arial" font-size="9" font-weight="700" fill="rgba(255,255,255,0.75)">Unity Ads</text>
+              <rect x="154" y="9" width="48" height="18" rx="9" fill="rgba(255,255,255,0.14)"/>
+              <text x="178" y="21" font-family="Inter,Arial" font-size="8.5" font-weight="700" fill="#fff" text-anchor="middle">Skip 5s ›</text>
+              <!-- Planet -->
+              <defs><radialGradient id="planet-fill" cx="35%" cy="30%"><stop offset="0" stop-color="#c084fc"/><stop offset="100%" stop-color="#4c1d95"/></radialGradient></defs>
+              <circle cx="105" cy="150" r="66" fill="url(#planet-fill)"/>
+              <ellipse cx="105" cy="150" rx="88" ry="17" fill="none" stroke="#a78bfa" stroke-width="3" opacity=".55"/>
+              <circle cx="105" cy="150" r="70" fill="none" stroke="#e879f9" stroke-width="2.5" opacity=".22"/>
+              <circle cx="178" cy="153" r="5" fill="#ffe14d" style="filter:drop-shadow(0 0 5px #ffe14d)"/>
+              <!-- Surface craters -->
+              <circle cx="88" cy="138" r="12" fill="#3b0764" opacity=".6"/>
+              <circle cx="122" cy="160" r="8" fill="#3b0764" opacity=".5"/>
+              <!-- Spaceship -->
+              <g transform="translate(105,232)">
+                <path d="M0,-24 L15,9 L0,3 L-15,9 Z" fill="#7b2ff7"/>
+                <path d="M0,-24 L15,9 Q0,15 -15,9 Z" fill="#9b4fff"/>
+                <path d="M-15,9 L-32,20 L-8,9 Z" fill="#5b1dbf"/>
+                <path d="M15,9 L32,20 L8,9 Z" fill="#5b1dbf"/>
+                <ellipse cx="0" cy="13" rx="6" ry="3" fill="#f72f9e" opacity=".9" style="filter:drop-shadow(0 0 6px #f72f9e)"/>
+              </g>
+              <!-- Laser beams -->
+              <line x1="105" y1="211" x2="58" y2="158" stroke="#ffe14d" stroke-width="1.5" opacity=".8" style="filter:drop-shadow(0 0 3px #ffe14d)"/>
+              <line x1="105" y1="211" x2="152" y2="160" stroke="#ffe14d" stroke-width="1.5" opacity=".8" style="filter:drop-shadow(0 0 3px #ffe14d)"/>
+              <!-- Hit explosion -->
+              <circle cx="150" cy="160" r="9" fill="#ff6b35" opacity=".9" style="filter:drop-shadow(0 0 7px #ff6b35)"/>
+              <circle cx="150" cy="160" r="5" fill="#ffe14d"/>
+              <!-- "VIDEO" badge -->
+              <rect x="12" y="264" width="52" height="16" rx="8" fill="#7b2ff7" opacity=".85"/>
+              <text x="38" y="275" font-family="Inter,Arial" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle">▶ VIDEO</text>
+              <!-- Bottom panel -->
+              <rect x="0" y="284" width="210" height="126" fill="rgba(8,12,20,0.96)"/>
+              <line x1="0" y1="284" x2="210" y2="284" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="14" y="312" font-family="Inter,Arial" font-size="19" font-weight="900" fill="#fff">Galaxy Strike</text>
+              <text x="14" y="330" font-family="Inter,Arial" font-size="10.5" fill="rgba(255,255,255,0.5)">RPG Adventure · ★ 4.9 · 10M+ installs</text>
+              <rect x="14" y="340" width="92" height="18" rx="9" fill="rgba(123,47,247,0.3)"/>
+              <text x="60" y="352" font-family="Inter,Arial" font-size="9" font-weight="700" fill="#c4b5fd" text-anchor="middle">🎁 Earn 300 gems free</text>
+              <!-- Video progress bar -->
+              <rect x="14" y="363" width="182" height="3" rx="1.5" fill="rgba(255,255,255,0.14)"/>
+              <rect x="14" y="363" width="112" height="3" rx="1.5" fill="#7b2ff7"/>
+              <text x="200" y="367" font-family="Inter,Arial" font-size="8" fill="rgba(255,255,255,0.38)" text-anchor="end">0:18</text>
+              <!-- Install button -->
+              <rect x="14" y="372" width="182" height="30" rx="15" fill="#7b2ff7"/>
+              <text x="105" y="391" font-family="Inter,Arial" font-size="13" font-weight="800" fill="#fff" text-anchor="middle">Install Free &rarr;</text>
+            </svg>
+          </div>
+          <div class="phone-cap">Galaxy Strike<span>Video · cinematic RPG ad</span></div>
+        </div>
+
       </div>
+
+      <!-- Performance stats strip -->
+      <div class="perf-strip fade-up">
+        <div class="perf-stat">
+          <div class="perf-num">20×</div>
+          <div class="perf-label">More installs than banners<br>with Playable ads</div>
+          <span class="perf-src">Liftoff 2024 Mobile Ad Creative Index</span>
+        </div>
+        <div class="perf-stat">
+          <div class="perf-num">14×</div>
+          <div class="perf-label">More installs than banners<br>with Video ads</div>
+          <span class="perf-src">Liftoff 2024 Mobile Ad Creative Index</span>
+        </div>
+        <div class="perf-stat">
+          <div class="perf-num">95%+</div>
+          <div class="perf-label">Completion rate for<br>Rewarded Video</div>
+          <span class="perf-src">Appodeal / Yango Q4 2024 benchmarks</span>
+        </div>
+      </div>
+
     </section>
 
     <!-- ═══ 1. D28 (SCROLLYTELLING) ═══ -->
@@ -1518,30 +1639,69 @@
     <section id="roas" class="section" style="padding-left:60px;padding-right:60px;padding-top:80px;padding-bottom:80px;background:linear-gradient(180deg,#f0fdf8 0%,#fff 100%);">
       <div class="section-num fade-up roas-accent">02 — ROAS Onboarding</div>
       <h2 class="section-heading fade-up d2">ROAS is faster to get into now</h2>
-      <div class="art-reveal" style="margin-bottom:32px;">
-        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A fast track from setup to launch" style="width:100%;height:auto;border-radius:18px;">
-          <defs><linearGradient id="roasbg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#22c55e"/></linearGradient></defs>
-          <rect width="600" height="200" rx="16" fill="url(#roasbg)"/>
-          <line x1="40" y1="120" x2="560" y2="120" stroke="#ffffff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="14 12" stroke-linecap="round"/>
-          <g transform="translate(70 70)"><rect x="0" y="0" width="4" height="60" fill="#ffffff"/><path d="M4,0 L34,0 L34,22 L4,22 Z" fill="#ffffff"/><path d="M4,0 h10 v7 h-10 z M24,0 h10 v7 h-10 z M14,7 h10 v8 h-10 z" fill="#0ea5e9"/></g>
-          <g stroke="#ffffff" stroke-opacity=".8" stroke-width="6" stroke-linecap="round"><line x1="330" y1="120" x2="380" y2="120"/><line x1="320" y1="100" x2="360" y2="100"/><line x1="320" y1="140" x2="360" y2="140"/></g>
-          <g transform="translate(430 120)"><circle r="34" fill="#ffffff"/><text x="0" y="6" font-family="Helvetica,Arial,sans-serif" font-size="22" font-weight="800" fill="#16a34a" text-anchor="middle">D1</text></g>
-          <text x="430" y="180" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">launch from day one</text>
-          <text x="84" y="160" font-family="Helvetica,Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff">setup</text>
-        </svg>
+      <div class="section-art-grid">
+        <div class="section-art-text">
+          <p class="section-body fade-up d2">
+            We trimmed the friction. You can launch ROAS campaigns from day one (no detour through CPI), add new countries to existing campaigns more easily, and the dashboard now flags data-readiness or measurement issues <em>before</em> they slow you down. Learning vs. Live states are clearer too.
+          </p>
+          <p class="section-body fade-up d3">
+            If setup ever felt like too much and you stepped away from ROAS, now&rsquo;s a good time to take another look.
+          </p>
+        </div>
+        <div class="section-art-phone">
+          <div class="phone" style="--rot:-3deg;">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ROAS campaign setup screen showing D28 campaign launched on Day 1">
+              <!-- Clean app background -->
+              <rect width="210" height="410" rx="26" fill="#f0fdf4"/>
+              <!-- Header bar -->
+              <rect x="0" y="0" width="210" height="52" fill="#0ea5e9"/>
+              <text x="22" y="31" font-family="Inter,Arial" font-size="13" fill="rgba(255,255,255,0.8)">&#8592;</text>
+              <text x="105" y="32" font-family="Inter,Arial" font-size="12.5" font-weight="800" fill="#fff" text-anchor="middle">New Campaign</text>
+              <!-- Success banner -->
+              <rect x="12" y="64" width="186" height="52" rx="12" fill="#22c55e"/>
+              <text x="105" y="87" font-family="Inter,Arial" font-size="15" font-weight="900" fill="#fff" text-anchor="middle">✓ Campaign Live!</text>
+              <text x="105" y="105" font-family="Inter,Arial" font-size="10" fill="rgba(255,255,255,0.85)" text-anchor="middle">D28 ROAS · Launched Day 1</text>
+              <!-- Settings card -->
+              <rect x="12" y="128" width="186" height="118" rx="12" fill="#fff" stroke="#d1fae5" stroke-width="1.5"/>
+              <text x="22" y="148" font-family="Inter,Arial" font-size="10" font-weight="700" fill="rgba(0,0,0,0.45)">Campaign settings</text>
+              <line x1="22" y1="154" x2="186" y2="154" stroke="#f0fdf4" stroke-width="1"/>
+              <text x="22" y="170" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.5)">Type</text>
+              <text x="186" y="170" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#111" text-anchor="end">D28 ROAS</text>
+              <line x1="22" y1="176" x2="186" y2="176" stroke="#f0fdf4" stroke-width="1"/>
+              <text x="22" y="192" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.5)">Target ROAS</text>
+              <text x="186" y="192" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#0ea5e9" text-anchor="end">35%</text>
+              <line x1="22" y1="198" x2="186" y2="198" stroke="#f0fdf4" stroke-width="1"/>
+              <text x="22" y="214" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.5)">Countries</text>
+              <text x="186" y="214" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#111" text-anchor="end">US, UK, DE, JP</text>
+              <line x1="22" y1="220" x2="186" y2="220" stroke="#f0fdf4" stroke-width="1"/>
+              <text x="22" y="236" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.5)">Daily budget</text>
+              <text x="186" y="236" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#111" text-anchor="end">$500 / day</text>
+              <!-- Live stats card -->
+              <rect x="12" y="258" width="186" height="88" rx="12" fill="#fff" stroke="#d1fae5" stroke-width="1.5"/>
+              <text x="22" y="278" font-family="Inter,Arial" font-size="10" font-weight="700" fill="rgba(0,0,0,0.45)">Live · 2h since launch</text>
+              <rect x="22" y="284" width="72" height="46" rx="8" fill="#f0fdf4"/>
+              <text x="58" y="308" font-family="Inter,Arial" font-size="20" font-weight="900" fill="#0ea5e9" text-anchor="middle">1,842</text>
+              <text x="58" y="323" font-family="Inter,Arial" font-size="9" fill="rgba(0,0,0,0.45)" text-anchor="middle">Impressions</text>
+              <rect x="104" y="284" width="72" height="46" rx="8" fill="#f0fdf4"/>
+              <text x="140" y="308" font-family="Inter,Arial" font-size="20" font-weight="900" fill="#22c55e" text-anchor="middle">127</text>
+              <text x="140" y="323" font-family="Inter,Arial" font-size="9" fill="rgba(0,0,0,0.45)" text-anchor="middle">Installs</text>
+              <!-- Learning progress -->
+              <rect x="12" y="358" width="186" height="40" rx="10" fill="#f0fdf4" stroke="#d1fae5" stroke-width="1"/>
+              <text x="22" y="376" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#15803d">Vector learning in progress...</text>
+              <rect x="22" y="382" width="148" height="6" rx="3" fill="#d1fae5"/>
+              <rect x="22" y="382" width="58" height="6" rx="3" fill="#22c55e"/>
+            </svg>
+          </div>
+        </div>
       </div>
-      <p class="section-body fade-up d3">
-        We trimmed the friction. You can launch ROAS campaigns from day one (no detour through CPI), add new countries to existing campaigns more easily, and the dashboard now flags data-readiness or measurement issues <em>before</em> they slow you down. Learning vs. Live states are clearer too.
-      </p>
-      <p class="section-body fade-up d4">
-        If setup ever felt like too much and you stepped away from ROAS, now&rsquo;s a good time to take another look.
-      </p>
     </section>
 
     <!-- ═══ 3. DASHBOARD ═══ -->
     <section id="dashboard" class="section" style="padding-left:60px;padding-right:60px;padding-top:80px;padding-bottom:80px;background:#fff;border-top:1px solid var(--border);">
       <div class="section-num fade-up dash-accent">03 — Dashboard</div>
       <h2 class="section-heading fade-up d2">A cleaner, more connected dashboard</h2>
+      <div class="section-art-grid">
+        <div class="section-art-text">
       <div class="art-reveal" style="margin-bottom:32px;">
         <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three connected dashboard nodes: Develop, Acquire, Monetize" style="width:100%;height:auto;border-radius:18px;">
           <defs><linearGradient id="dashbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111827"/><stop offset="1" stop-color="#312e81"/></linearGradient></defs>
@@ -1575,6 +1735,71 @@
       <p class="section-body fade-up d4">
         Cleaner navigation, a more modern workspace, easier movement between the things you do every day. This is Phase 1 &mdash; the foundation, not the finish line. More products join through the rest of 2026.
       </p>
+        </div><!-- /section-art-text -->
+        <div class="section-art-phone">
+          <div class="phone" style="--rot:4deg;">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Unity dashboard mockup showing Acquire tab with live campaigns">
+              <!-- Unity dashboard UI -->
+              <rect width="210" height="410" rx="26" fill="#111827"/>
+              <!-- Top nav -->
+              <rect x="0" y="0" width="210" height="50" fill="#1e2536"/>
+              <rect x="12" y="15" width="22" height="22" rx="5" fill="#fff"/>
+              <text x="23" y="29" font-family="Inter,Arial" font-size="9" font-weight="900" fill="#111827" text-anchor="middle">U</text>
+              <text x="42" y="29" font-family="Inter,Arial" font-size="10.5" font-weight="800" fill="#fff">Unity</text>
+              <circle cx="191" cy="23" r="9" fill="#7b2ff7"/>
+              <text x="191" y="27" font-family="Inter,Arial" font-size="8.5" fill="#fff" text-anchor="middle" font-weight="700">3</text>
+              <!-- Tab bar -->
+              <rect x="0" y="50" width="210" height="34" fill="#1a2232"/>
+              <text x="35" y="72" font-family="Inter,Arial" font-size="9.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-weight="600">Develop</text>
+              <text x="105" y="72" font-family="Inter,Arial" font-size="9.5" fill="#fff" text-anchor="middle" font-weight="800">Acquire</text>
+              <rect x="79" y="81" width="52" height="2" rx="1" fill="#7b2ff7"/>
+              <text x="175" y="72" font-family="Inter,Arial" font-size="9.5" fill="rgba(255,255,255,0.38)" text-anchor="middle" font-weight="600">Monetize</text>
+              <!-- Section heading -->
+              <text x="14" y="102" font-family="Inter,Arial" font-size="10" font-weight="700" fill="rgba(255,255,255,0.45)">CAMPAIGNS</text>
+              <!-- Campaign card 1 -->
+              <rect x="12" y="110" width="186" height="52" rx="10" fill="#1e2a3c"/>
+              <rect x="12" y="110" width="4" height="52" rx="2" fill="#22c55e"/>
+              <text x="26" y="128" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#fff">My Puzzle Game — D28</text>
+              <rect x="26" y="133" width="34" height="14" rx="7" fill="rgba(34,197,94,0.2)"/>
+              <text x="43" y="143" font-family="Inter,Arial" font-size="8.5" fill="#22c55e" text-anchor="middle" font-weight="700">● Live</text>
+              <text x="188" y="128" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#22c55e" text-anchor="end">+24%</text>
+              <text x="188" y="142" font-family="Inter,Arial" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="end">ROAS</text>
+              <rect x="100" y="137" width="6" height="14" rx="2" fill="#7b2ff7" opacity=".6"/>
+              <rect x="109" y="133" width="6" height="18" rx="2" fill="#7b2ff7" opacity=".7"/>
+              <rect x="118" y="129" width="6" height="22" rx="2" fill="#7b2ff7" opacity=".85"/>
+              <rect x="127" y="131" width="6" height="20" rx="2" fill="#7b2ff7"/>
+              <rect x="136" y="126" width="6" height="25" rx="2" fill="#22c55e"/>
+              <!-- Campaign card 2 -->
+              <rect x="12" y="170" width="186" height="52" rx="10" fill="#1e2a3c"/>
+              <rect x="12" y="170" width="4" height="52" rx="2" fill="#f59e0b"/>
+              <text x="26" y="188" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#fff">Action Game — D7</text>
+              <rect x="26" y="193" width="62" height="14" rx="7" fill="rgba(245,158,11,0.2)"/>
+              <text x="57" y="203" font-family="Inter,Arial" font-size="8.5" fill="#f59e0b" text-anchor="middle" font-weight="700">◔ Learning</text>
+              <text x="188" y="188" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#f59e0b" text-anchor="end">18.2%</text>
+              <text x="188" y="202" font-family="Inter,Arial" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="end">ROAS</text>
+              <!-- Spend chart card -->
+              <rect x="12" y="230" width="186" height="82" rx="10" fill="#1e2a3c"/>
+              <text x="22" y="248" font-family="Inter,Arial" font-size="10" font-weight="700" fill="rgba(255,255,255,0.65)">Spend · last 7 days</text>
+              <text x="188" y="248" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#22c55e" text-anchor="end">↑ 18% MoM</text>
+              <polyline points="22,296 50,291 78,282 106,286 134,274 162,268 188,260" fill="none" stroke="#7b2ff7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="22,296 50,291 78,282 106,286 134,274 162,268 188,260 188,304 22,304" fill="#7b2ff7" opacity=".11"/>
+              <line x1="22" y1="304" x2="188" y2="304" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <!-- Bottom stat cards -->
+              <rect x="12" y="322" width="88" height="56" rx="10" fill="#1e2a3c"/>
+              <text x="56" y="346" font-family="Inter,Arial" font-size="19" font-weight="900" fill="#7b2ff7" text-anchor="middle">$24K</text>
+              <text x="56" y="362" font-family="Inter,Arial" font-size="9" fill="rgba(255,255,255,0.45)" text-anchor="middle">Total spend</text>
+              <rect x="110" y="322" width="88" height="56" rx="10" fill="#1e2a3c"/>
+              <text x="154" y="346" font-family="Inter,Arial" font-size="19" font-weight="900" fill="#22c55e" text-anchor="middle">2.1M</text>
+              <text x="154" y="362" font-family="Inter,Arial" font-size="9" fill="rgba(255,255,255,0.45)" text-anchor="middle">Impressions</text>
+              <!-- Bottom nav bar -->
+              <rect x="0" y="386" width="210" height="24" rx="0" fill="#1a2232"/>
+              <text x="35" y="402" font-family="Inter,Arial" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="middle">🏠</text>
+              <text x="105" y="402" font-family="Inter,Arial" font-size="9" fill="#7b2ff7" text-anchor="middle">📊</text>
+              <text x="175" y="402" font-family="Inter,Arial" font-size="9" fill="rgba(255,255,255,0.35)" text-anchor="middle">⚙</text>
+            </svg>
+          </div>
+        </div>
+      </div><!-- /section-art-grid -->
     </section>
 
     <!-- ═══ 4. SDK (SCROLLYTELLING) ═══ -->
@@ -1696,7 +1921,66 @@
     <section id="tapjoy" style="padding:80px 60px;background:linear-gradient(180deg,#fff5fe 0%,#fff 50%);border-top:1px solid var(--border);">
       <div class="section-num fade-up" style="color:#f72f9e;">06 — Tapjoy Offerwall</div>
       <h2 class="section-heading fade-up d2">Deep engagement,<br>rewarded</h2>
-      <p class="section-body fade-up d3" style="color:#3a3a4e;max-width:580px;margin-top:18px;margin-bottom:0;">The Tapjoy Offerwall connects your game to users who earn real in-app rewards by playing — not just installing. Multi Reward and Daily Rewards are live today, driving quality installs that go well beyond the first session.</p>
+      <div class="section-art-grid" style="margin-top:28px;">
+        <div class="section-art-text">
+          <p class="section-body fade-up" style="color:#3a3a4e;margin-bottom:0;">The Tapjoy Offerwall connects your game to users who earn real in-app rewards by playing — not just installing. Multi Reward and Daily Rewards are live today, driving quality installs that go well beyond the first session.</p>
+        </div>
+        <div class="section-art-phone">
+          <div class="phone" style="--rot:4deg;">
+            <svg class="screen" viewBox="0 0 210 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tapjoy offerwall mockup showing Multi Reward game offers">
+              <!-- Light background (Tapjoy offerwall style) -->
+              <rect width="210" height="410" rx="26" fill="#f8f7ff"/>
+              <!-- Header -->
+              <rect x="0" y="0" width="210" height="52" fill="#6366f1"/>
+              <text x="22" y="32" font-family="Inter,Arial" font-size="13" fill="rgba(255,255,255,0.8)">&#8592;</text>
+              <text x="105" y="33" font-family="Inter,Arial" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">Earn Rewards</text>
+              <!-- Tab bar -->
+              <rect x="0" y="52" width="210" height="32" fill="#fff"/>
+              <text x="35" y="73" font-family="Inter,Arial" font-size="10" fill="#6366f1" text-anchor="middle" font-weight="800">All</text>
+              <rect x="18" y="81" width="34" height="2" rx="1" fill="#6366f1"/>
+              <text x="105" y="73" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.38)" text-anchor="middle" font-weight="600">Play</text>
+              <text x="172" y="73" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.38)" text-anchor="middle" font-weight="600">Shopping</text>
+              <!-- Offer 1: highlighted Going Balls -->
+              <rect x="10" y="92" width="190" height="72" rx="12" fill="#fff" stroke="#6366f1" stroke-width="1.5"/>
+              <rect x="18" y="99" width="70" height="14" rx="7" fill="#6366f1"/>
+              <text x="53" y="109" font-family="Inter,Arial" font-size="8" fill="#fff" font-weight="700" text-anchor="middle">♣ Most Rewards</text>
+              <rect x="18" y="115" width="38" height="38" rx="10" fill="#ddd6fe"/>
+              <text x="37" y="139" font-family="Inter,Arial" font-size="17" text-anchor="middle">🎮</text>
+              <text x="64" y="128" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#111">Going Balls</text>
+              <text x="64" y="143" font-family="Inter,Arial" font-size="9" fill="rgba(0,0,0,0.5)">5 milestones · Lvl 150</text>
+              <rect x="150" y="114" width="42" height="30" rx="8" fill="#6366f1"/>
+              <text x="171" y="128" font-family="Inter,Arial" font-size="9" fill="#fff" text-anchor="middle" font-weight="600">Up to</text>
+              <text x="171" y="140" font-family="Inter,Arial" font-size="11" fill="#fff" text-anchor="middle" font-weight="900">86K 🪙</text>
+              <!-- Offer 2 -->
+              <rect x="10" y="172" width="190" height="62" rx="12" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="18" y="182" width="38" height="38" rx="10" fill="#fce7f3"/>
+              <text x="37" y="206" font-family="Inter,Arial" font-size="17" text-anchor="middle">🌿</text>
+              <text x="64" y="196" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#111">Garden Bloom</text>
+              <text x="64" y="211" font-family="Inter,Arial" font-size="9" fill="rgba(0,0,0,0.5)">Daily · 5 lvls/day · 10 days</text>
+              <rect x="150" y="181" width="42" height="30" rx="8" fill="#9333ea"/>
+              <text x="171" y="195" font-family="Inter,Arial" font-size="9" fill="#fff" text-anchor="middle" font-weight="600">Up to</text>
+              <text x="171" y="207" font-family="Inter,Arial" font-size="11" fill="#fff" text-anchor="middle" font-weight="900">40K 🪙</text>
+              <!-- Offer 3 -->
+              <rect x="10" y="242" width="190" height="62" rx="12" fill="#fff" stroke="#e5e7eb" stroke-width="1"/>
+              <rect x="18" y="252" width="38" height="38" rx="10" fill="#dcfce7"/>
+              <text x="37" y="276" font-family="Inter,Arial" font-size="17" text-anchor="middle">🚀</text>
+              <text x="64" y="266" font-family="Inter,Arial" font-size="11" font-weight="800" fill="#111">Space Raider</text>
+              <text x="64" y="281" font-family="Inter,Arial" font-size="9" fill="rgba(0,0,0,0.5)">IAP milestone · 3 steps</text>
+              <rect x="150" y="251" width="42" height="30" rx="8" fill="#22c55e"/>
+              <text x="171" y="265" font-family="Inter,Arial" font-size="9" fill="#fff" text-anchor="middle" font-weight="600">Up to</text>
+              <text x="171" y="277" font-family="Inter,Arial" font-size="11" fill="#fff" text-anchor="middle" font-weight="900">25K 🪙</text>
+              <!-- Milestone breakdown for top offer -->
+              <rect x="10" y="314" width="190" height="86" rx="12" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+              <text x="105" y="332" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#6366f1" text-anchor="middle">Going Balls — reward steps</text>
+              <line x1="20" y1="337" x2="190" y2="337" stroke="#ddd6fe" stroke-width="1"/>
+              <text x="20" y="352" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.55)">Tutorial</text><text x="188" y="352" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#6366f1" text-anchor="end">2,100 🪙</text>
+              <text x="20" y="367" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.55)">Level 25</text><text x="188" y="367" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#6366f1" text-anchor="end">5,400 🪙</text>
+              <text x="20" y="382" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.55)">IAP purchase</text><text x="188" y="382" font-family="Inter,Arial" font-size="10" font-weight="700" fill="#6366f1" text-anchor="end">12,200 🪙</text>
+              <text x="20" y="397" font-family="Inter,Arial" font-size="10" fill="rgba(0,0,0,0.55)">Level 150</text><text x="188" y="397" font-family="Inter,Arial" font-size="10" font-weight="800" fill="#6366f1" text-anchor="end">24,800 🪙</text>
+            </svg>
+          </div>
+        </div>
+      </div>
 
       <!-- Campaign types -->
       <span class="tapjoy-sub-label fade-up">Campaign types</span>
