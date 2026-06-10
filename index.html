@@ -453,7 +453,7 @@
     }
     .glance-card.gc-wide .gc-body { flex: 1; min-width: 0; }
 
-    /* ─── SECTION 08: DEVELOPER TOOLS ─── */
+    /* ─── SECTION 06: DEVELOPER TOOLS ─── */
     #devtools { padding: 80px 60px; background: #06070f; border-top: 1px solid rgba(255,255,255,0.07); }
     .devtools-grid { display: grid; grid-template-columns: 1fr 360px; gap: 52px; align-items: center; }
     .devtools-kicker { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #818cf8; margin-bottom: 18px; }
@@ -1201,9 +1201,9 @@
     <div class="pill" data-target="dashboard">3 Dashboard</div>
     <div class="pill" data-target="sdk">4 SDK</div>
     <div class="pill" data-target="data">5 Data</div>
-    <div class="pill" data-target="tapjoy">6 Tapjoy</div>
-    <div class="pill" data-target="roadmap">7 Roadmap</div>
-    <div class="pill" data-target="devtools">8 Dev Tools</div>
+    <div class="pill" data-target="devtools">6 Dev Tools</div>
+    <div class="pill" data-target="tapjoy">7 Tapjoy</div>
+    <div class="pill" data-target="roadmap">8 Roadmap</div>
   </div>
 </div>
 
@@ -1254,19 +1254,19 @@
         <span class="nav-label">Data signals</span>
         <span class="nav-num">05</span>
       </a>
+      <a href="#devtools" class="nav-item" data-section="devtools">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Dev Tools</span>
+        <span class="nav-num">06</span>
+      </a>
       <a href="#tapjoy" class="nav-item" data-section="tapjoy">
         <div class="nav-dot"></div>
         <span class="nav-label">Tapjoy Offerwall</span>
-        <span class="nav-num">06</span>
+        <span class="nav-num">07</span>
       </a>
       <a href="#roadmap" class="nav-item" data-section="roadmap">
         <div class="nav-dot"></div>
         <span class="nav-label">Roadmap</span>
-        <span class="nav-num">07</span>
-      </a>
-      <a href="#devtools" class="nav-item" data-section="devtools">
-        <div class="nav-dot"></div>
-        <span class="nav-label">Dev Tools</span>
         <span class="nav-num">08</span>
       </a>
     </div>
@@ -1412,11 +1412,24 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 06 — Tapjoy Offerwall: featured full-width with side pills -->
+        <!-- 06 — Developer Tools: full-width compact row -->
+        <a class="glance-card gc-wide" href="#devtools" style="--gc-grad:linear-gradient(90deg,#4f46e5,#818cf8);background:#06070f;">
+          <div class="gc-body">
+            <div class="gc-top">
+              <span class="gc-num" style="color:rgba(255,255,255,0.4);">06</span>
+              <span class="glance-tag" style="background:rgba(99,102,241,0.2);color:#818cf8;">Open Beta</span>
+            </div>
+            <div class="gc-title" style="color:#fff;">Unity AI Tutorial Series</div>
+            <div class="gc-desc" style="color:rgba(255,255,255,0.55);">AI Assistant &amp; MCP in the Unity Editor — speed up your game development workflow.</div>
+          </div>
+          <div class="gc-arr" style="color:rgba(255,255,255,0.4);">&rarr;</div>
+        </a>
+
+        <!-- 07 — Tapjoy Offerwall: featured full-width with side pills -->
         <a class="glance-card gc-tapjoy" href="#tapjoy" style="--gc-grad:linear-gradient(90deg,#f72f9e,#7b2ff7);">
           <div class="gc-body">
             <div class="gc-top">
-              <span class="gc-num">06</span>
+              <span class="gc-num">07</span>
               <span class="glance-tag" style="background:rgba(247,47,158,0.12);color:#f72f9e;">New</span>
             </div>
             <div class="gc-title">Tapjoy Offerwall</div>
@@ -1430,30 +1443,17 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 07 — Roadmap: full-width compact row -->
+        <!-- 08 — Roadmap: full-width compact row -->
         <a class="glance-card gc-wide" href="#roadmap" style="--gc-grad:linear-gradient(90deg,#c026d3,#f72f9e);">
           <div class="gc-body">
             <div class="gc-top">
-              <span class="gc-num">07</span>
+              <span class="gc-num">08</span>
               <span class="glance-tag tag-soon">Roadmap</span>
             </div>
             <div class="gc-title">Coming next</div>
             <div class="gc-desc">CPE Retention &amp; Payer campaigns, Custom-Event optimization, and a more agentic Vector.</div>
           </div>
           <div class="gc-arr">&rarr;</div>
-        </a>
-
-        <!-- 08 — Developer Tools: full-width compact row -->
-        <a class="glance-card gc-wide" href="#devtools" style="--gc-grad:linear-gradient(90deg,#4f46e5,#818cf8);background:#06070f;">
-          <div class="gc-body">
-            <div class="gc-top">
-              <span class="gc-num" style="color:rgba(255,255,255,0.4);">08</span>
-              <span class="glance-tag" style="background:rgba(99,102,241,0.2);color:#818cf8;">Open Beta</span>
-            </div>
-            <div class="gc-title" style="color:#fff;">Unity AI Tutorial Series</div>
-            <div class="gc-desc" style="color:rgba(255,255,255,0.55);">AI Assistant &amp; MCP in the Unity Editor — speed up your game development workflow.</div>
-          </div>
-          <div class="gc-arr" style="color:rgba(255,255,255,0.4);">&rarr;</div>
         </a>
 
       </div>
@@ -2025,9 +2025,74 @@
       </p>
     </section>
 
-    <!-- ═══ 6. TAPJOY OFFERWALL ═══ -->
+    <!-- ═══ 6. DEVELOPER TOOLS ═══ -->
+    <section id="devtools">
+      <div class="section-num fade-up" style="color:#818cf8;">06 — Developer Tools</div>
+      <div class="devtools-grid">
+        <div class="fade-up d2">
+          <div class="devtools-kicker">Unity AI Open Beta</div>
+          <h2 class="devtools-heading">Speed up your game<br>development workflow</h2>
+          <p class="devtools-body">The <strong>Unity AI Assistant</strong> and <strong>Model Context Protocol (MCP)</strong> let your developers answer questions, handle time-consuming tasks, and let AI agents interact directly with the Unity Editor — all without leaving the IDE. The AI Tutorial Series shows exactly how to get started.</p>
+          <div class="devtools-ctas">
+            <a href="https://www.youtube.com/watch?v=VpfksT0uH_A&list=PLX2vGYjWbI0R8KK-I3ykVKrFggJB8isEd" target="_blank" rel="noopener" class="devtools-cta-primary">&#9654; Watch the Tutorial Series</a>
+            <a href="https://lnkd.in/gCpGG3cw" target="_blank" rel="noopener" class="devtools-cta-secondary">&#128279; Full announcement</a>
+          </div>
+        </div>
+        <div class="devtools-mockup art-reveal">
+          <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Unity AI Assistant chat interface in the Unity Editor" style="display:block;width:100%;height:auto;">
+            <defs>
+              <linearGradient id="dt-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b8d9f0"/><stop offset="100%" stop-color="#6fa8cb"/></linearGradient>
+              <linearGradient id="dt-grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a8c5c"/><stop offset="100%" stop-color="#2d6040"/></linearGradient>
+            </defs>
+            <rect width="360" height="320" rx="12" fill="#1c1c1e"/>
+            <rect x="0" y="0" width="360" height="30" rx="12" fill="#2c2c2e"/>
+            <rect x="0" y="18" width="360" height="12" fill="#2c2c2e"/>
+            <circle cx="14" cy="15" r="5" fill="#ff5f57"/>
+            <circle cx="27" cy="15" r="5" fill="#febc2e"/>
+            <circle cx="40" cy="15" r="5" fill="#28c840"/>
+            <text x="180" y="20" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">Unity Editor — SampleScene</text>
+            <rect x="0" y="30" width="360" height="148" fill="url(#dt-sky)"/>
+            <rect x="0" y="138" width="360" height="40" fill="url(#dt-grass)"/>
+            <rect x="18" y="88" width="7" height="52" fill="#5a3e2b"/>
+            <ellipse cx="21" cy="80" rx="18" ry="20" fill="#2d6a3c"/>
+            <ellipse cx="21" cy="80" rx="14" ry="16" fill="#347a44"/>
+            <rect x="314" y="98" width="6" height="44" fill="#5a3e2b"/>
+            <ellipse cx="317" cy="90" rx="15" ry="17" fill="#2d6a3c"/>
+            <rect x="152" y="106" width="42" height="30" rx="4" fill="#8b6534"/>
+            <rect x="152" y="106" width="42" height="12" rx="4" fill="#a37840"/>
+            <rect x="166" y="110" width="14" height="10" rx="2" fill="#3d2308"/>
+            <rect x="168" y="112" width="10" height="6" rx="1" fill="#d4a832"/>
+            <ellipse cx="173" cy="140" rx="28" ry="6" fill="rgba(0,0,0,0.18)"/>
+            <rect x="8" y="36" width="48" height="16" rx="4" fill="rgba(0,0,0,0.5)"/>
+            <text x="32" y="47" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.8)" text-anchor="middle" font-weight="700">Scene</text>
+            <rect x="0" y="178" width="360" height="142" fill="#232325"/>
+            <rect x="0" y="178" width="360" height="34" fill="#2a2a2c"/>
+            <rect x="10" y="186" width="18" height="18" rx="4" fill="rgba(255,255,255,0.9)"/>
+            <text x="19" y="199" font-family="Inter,sans-serif" font-size="9" font-weight="900" fill="#1c1c1e" text-anchor="middle">U</text>
+            <text x="36" y="199" font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="rgba(255,255,255,0.9)">Unity AI</text>
+            <rect x="82" y="188" width="60" height="14" rx="7" fill="rgba(99,102,241,0.25)"/>
+            <text x="112" y="198" font-family="Inter,sans-serif" font-size="8" font-weight="800" fill="#818cf8" text-anchor="middle">OPEN BETA</text>
+            <rect x="10" y="218" width="80" height="18" rx="9" fill="#3a3a3c"/>
+            <text x="50" y="230" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.72)" text-anchor="middle">chest_wood ×</text>
+            <rect x="96" y="218" width="74" height="18" rx="9" fill="#3a3a3c"/>
+            <text x="133" y="230" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.72)" text-anchor="middle">starting_pos ×</text>
+            <rect x="176" y="218" width="66" height="18" rx="9" fill="#3a3a3c"/>
+            <text x="209" y="230" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.72)" text-anchor="middle">terrain1 ×</text>
+            <rect x="10" y="242" width="308" height="52" rx="10" fill="#3a3a3c"/>
+            <text x="20" y="257" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.82)">75 chest_wood game objects should be</text>
+            <text x="20" y="270" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.82)">placed at random positions on X and Z</text>
+            <text x="20" y="283" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.45)">axis from the terrain bounds...</text>
+            <rect x="324" y="250" width="28" height="28" rx="8" fill="#5c4fff"/>
+            <text x="338" y="267" font-family="Inter,sans-serif" font-size="14" fill="#fff" text-anchor="middle" font-weight="900">↑</text>
+            <rect x="0" y="308" width="360" height="12" rx="0" fill="rgba(99,102,241,0.04)"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 7. TAPJOY OFFERWALL ═══ -->
     <section id="tapjoy" style="padding:80px 60px;background:linear-gradient(180deg,#fff5fe 0%,#fff 50%);border-top:1px solid var(--border);">
-      <div class="section-num fade-up" style="color:#f72f9e;">06 — Tapjoy Offerwall</div>
+      <div class="section-num fade-up" style="color:#f72f9e;">07 — Tapjoy Offerwall</div>
       <h2 class="section-heading fade-up d2">Deep engagement,<br>rewarded</h2>
       <p class="section-body fade-up" style="color:#3a3a4e;margin-top:24px;max-width:660px;">The Tapjoy Offerwall connects your game to users who earn real in-app rewards by playing — not just installing. Multi Reward and Daily Rewards are live today, driving quality installs that go well beyond the first session.</p>
 
@@ -2491,7 +2556,7 @@
 
     <!-- ═══ 7. ROADMAP ═══ -->
     <section id="roadmap" style="padding:80px 60px;background:#fff;border-top:1px solid var(--border);">
-      <div class="section-num fade-up" style="color:var(--pink);">07 — Roadmap</div>
+      <div class="section-num fade-up" style="color:var(--pink);">08 — Roadmap</div>
       <h2 class="section-heading fade-up d2">What&rsquo;s coming next</h2>
       <div class="art-reveal" style="margin-bottom:36px;">
         <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A winding road with Q2, Q3 and H2 milestones" style="width:100%;height:auto;border-radius:18px;max-width:600px;">
@@ -2552,86 +2617,6 @@
       </div>
     </section>
 
-    <!-- ═══ 8. DEVELOPER TOOLS ═══ -->
-    <section id="devtools">
-      <div class="section-num fade-up" style="color:#818cf8;">08 — Developer Tools</div>
-      <div class="devtools-grid">
-        <div class="fade-up d2">
-          <div class="devtools-kicker">Unity AI Open Beta</div>
-          <h2 class="devtools-heading">Speed up your game<br>development workflow</h2>
-          <p class="devtools-body">The <strong>Unity AI Assistant</strong> and <strong>Model Context Protocol (MCP)</strong> let your developers answer questions, handle time-consuming tasks, and let AI agents interact directly with the Unity Editor — all without leaving the IDE. The AI Tutorial Series shows exactly how to get started.</p>
-          <div class="devtools-ctas">
-            <a href="https://www.youtube.com/watch?v=VpfksT0uH_A&list=PLX2vGYjWbI0R8KK-I3ykVKrFggJB8isEd" target="_blank" rel="noopener" class="devtools-cta-primary">&#9654; Watch the Tutorial Series</a>
-            <a href="https://lnkd.in/gCpGG3cw" target="_blank" rel="noopener" class="devtools-cta-secondary">&#128279; Full announcement</a>
-          </div>
-        </div>
-        <div class="devtools-mockup art-reveal">
-          <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Unity AI Assistant chat interface in the Unity Editor" style="display:block;width:100%;height:auto;">
-            <defs>
-              <linearGradient id="dt-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b8d9f0"/><stop offset="100%" stop-color="#6fa8cb"/></linearGradient>
-              <linearGradient id="dt-grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a8c5c"/><stop offset="100%" stop-color="#2d6040"/></linearGradient>
-            </defs>
-            <!-- Window chrome -->
-            <rect width="360" height="320" rx="12" fill="#1c1c1e"/>
-            <rect x="0" y="0" width="360" height="30" rx="12" fill="#2c2c2e"/>
-            <rect x="0" y="18" width="360" height="12" fill="#2c2c2e"/>
-            <!-- Traffic lights -->
-            <circle cx="14" cy="15" r="5" fill="#ff5f57"/>
-            <circle cx="27" cy="15" r="5" fill="#febc2e"/>
-            <circle cx="40" cy="15" r="5" fill="#28c840"/>
-            <text x="180" y="20" font-family="Inter,sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" text-anchor="middle">Unity Editor — SampleScene</text>
-            <!-- Game scene view -->
-            <rect x="0" y="30" width="360" height="148" fill="url(#dt-sky)"/>
-            <rect x="0" y="138" width="360" height="40" fill="url(#dt-grass)"/>
-            <!-- Trees left -->
-            <rect x="18" y="88" width="7" height="52" fill="#5a3e2b"/>
-            <ellipse cx="21" cy="80" rx="18" ry="20" fill="#2d6a3c"/>
-            <ellipse cx="21" cy="80" rx="14" ry="16" fill="#347a44"/>
-            <!-- Trees right -->
-            <rect x="314" y="98" width="6" height="44" fill="#5a3e2b"/>
-            <ellipse cx="317" cy="90" rx="15" ry="17" fill="#2d6a3c"/>
-            <!-- Chest object in scene -->
-            <rect x="152" y="106" width="42" height="30" rx="4" fill="#8b6534"/>
-            <rect x="152" y="106" width="42" height="12" rx="4" fill="#a37840"/>
-            <rect x="166" y="110" width="14" height="10" rx="2" fill="#3d2308"/>
-            <rect x="168" y="112" width="10" height="6" rx="1" fill="#d4a832"/>
-            <!-- Ground details -->
-            <ellipse cx="173" cy="140" rx="28" ry="6" fill="rgba(0,0,0,0.18)"/>
-            <!-- Scene overlay label -->
-            <rect x="8" y="36" width="48" height="16" rx="4" fill="rgba(0,0,0,0.5)"/>
-            <text x="32" y="47" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.8)" text-anchor="middle" font-weight="700">Scene</text>
-            <!-- AI Panel -->
-            <rect x="0" y="178" width="360" height="142" fill="#232325"/>
-            <!-- Panel header -->
-            <rect x="0" y="178" width="360" height="34" fill="#2a2a2c"/>
-            <!-- Unity logo mark -->
-            <rect x="10" y="186" width="18" height="18" rx="4" fill="rgba(255,255,255,0.9)"/>
-            <text x="19" y="199" font-family="Inter,sans-serif" font-size="9" font-weight="900" fill="#1c1c1e" text-anchor="middle">U</text>
-            <text x="36" y="199" font-family="Inter,sans-serif" font-size="11" font-weight="800" fill="rgba(255,255,255,0.9)">Unity AI</text>
-            <rect x="82" y="188" width="60" height="14" rx="7" fill="rgba(99,102,241,0.25)"/>
-            <text x="112" y="198" font-family="Inter,sans-serif" font-size="8" font-weight="800" fill="#818cf8" text-anchor="middle">OPEN BETA</text>
-            <!-- Context pills row -->
-            <rect x="10" y="218" width="80" height="18" rx="9" fill="#3a3a3c"/>
-            <text x="50" y="230" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.72)" text-anchor="middle">chest_wood ×</text>
-            <rect x="96" y="218" width="74" height="18" rx="9" fill="#3a3a3c"/>
-            <text x="133" y="230" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.72)" text-anchor="middle">starting_pos ×</text>
-            <rect x="176" y="218" width="66" height="18" rx="9" fill="#3a3a3c"/>
-            <text x="209" y="230" font-family="Inter,sans-serif" font-size="8" fill="rgba(255,255,255,0.72)" text-anchor="middle">terrain1 ×</text>
-            <!-- Chat prompt text area -->
-            <rect x="10" y="242" width="308" height="52" rx="10" fill="#3a3a3c"/>
-            <text x="20" y="257" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.82)">75 chest_wood game objects should be</text>
-            <text x="20" y="270" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.82)">placed at random positions on X and Z</text>
-            <text x="20" y="283" font-family="Inter,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.45)">axis from the terrain bounds...</text>
-            <!-- Send button -->
-            <rect x="324" y="250" width="28" height="28" rx="8" fill="#5c4fff"/>
-            <text x="338" y="267" font-family="Inter,sans-serif" font-size="14" fill="#fff" text-anchor="middle" font-weight="900">↑</text>
-            <!-- Bottom glow accent -->
-            <rect x="0" y="308" width="360" height="12" rx="0" fill="rgba(99,102,241,0.04)"/>
-          </svg>
-        </div>
-      </div>
-    </section>
-
     <!-- ═══ CLOSING CTA ═══ -->
     <section id="cta">
       <div class="cta-box">
@@ -2671,7 +2656,7 @@
   }
 
   // ─── ACTIVE SECTION (rail + pills) ───
-  var sections = ['hero','glance','d28','roas','dashboard','sdk','data','tapjoy','roadmap','devtools'];
+  var sections = ['hero','glance','d28','roas','dashboard','sdk','data','devtools','tapjoy','roadmap'];
   var navItems = document.querySelectorAll('.nav-item[data-section]');
   var pills = document.querySelectorAll('.pill[data-target]');
 
