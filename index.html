@@ -454,18 +454,18 @@
     .glance-card.gc-wide .gc-body { flex: 1; min-width: 0; }
 
     /* ─── SECTION 06: DEVELOPER TOOLS ─── */
-    #devtools { padding: 80px 60px; background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #1e40af 100%); border-top: 1px solid rgba(255,255,255,0.15); }
+    #devtools { padding: 80px 60px; background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdf4 100%); border-top: 1px solid #bbf7d0; }
     .devtools-grid { display: grid; grid-template-columns: 1fr 360px; gap: 52px; align-items: center; }
-    .devtools-kicker { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #818cf8; margin-bottom: 18px; }
-    .devtools-heading { font-size: clamp(26px,3vw,38px); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 14px; letter-spacing: -0.02em; }
-    .devtools-body { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 28px; max-width: 480px; }
-    .devtools-body strong { color: rgba(255,255,255,0.88); font-weight: 700; }
+    .devtools-kicker { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #059669; margin-bottom: 18px; }
+    .devtools-heading { font-size: clamp(26px,3vw,38px); font-weight: 900; color: #052e16; line-height: 1.1; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .devtools-body { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 28px; max-width: 480px; }
+    .devtools-body strong { color: #111827; font-weight: 700; }
     .devtools-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-    .devtools-cta-primary { background: #fff; color: #06070f; font-size: 13px; font-weight: 800; padding: 12px 22px; border-radius: 24px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s; }
-    .devtools-cta-primary:hover { background: #e0d9ff; }
-    .devtools-cta-secondary { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82); font-size: 13px; font-weight: 700; padding: 12px 22px; border-radius: 24px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.14); transition: background 0.2s; }
-    .devtools-cta-secondary:hover { background: rgba(255,255,255,0.13); }
-    .devtools-mockup { border-radius: 16px; overflow: hidden; box-shadow: 0 32px 64px -20px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08); }
+    .devtools-cta-primary { background: #059669; color: #fff; font-size: 13px; font-weight: 800; padding: 12px 22px; border-radius: 24px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s; }
+    .devtools-cta-primary:hover { background: #047857; }
+    .devtools-cta-secondary { background: rgba(5,150,105,0.08); color: #065f46; font-size: 13px; font-weight: 700; padding: 12px 22px; border-radius: 24px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(5,150,105,0.22); transition: background 0.2s; }
+    .devtools-cta-secondary:hover { background: rgba(5,150,105,0.14); }
+    .devtools-mockup { border-radius: 16px; overflow: hidden; box-shadow: 0 24px 48px -12px rgba(5,150,105,0.18), 0 0 0 1px rgba(5,150,105,0.12); }
     @media (max-width: 860px) { .devtools-grid { grid-template-columns: 1fr; gap: 36px; } #devtools { padding: 60px 28px; } }
 
     .gc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
@@ -516,18 +516,20 @@
 
     /* CPI Billing dark card */
     .tapjoy-cpi-box {
-      background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 55%, #5b21b6 100%);
-      border: 1px solid rgba(255,255,255,0.15);
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+      border: 1.5px solid #bbf7d0;
       border-radius: 18px; padding: 36px 40px;
       display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start;
+      position: relative; overflow: hidden;
     }
-    .tapjoy-cpi-badge { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #f472b6; background: rgba(244,114,182,0.15); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
-    .tapjoy-cpi-title { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .tapjoy-cpi-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #22c55e, #059669); }
+    .tapjoy-cpi-badge { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #059669; background: rgba(5,150,105,0.1); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .tapjoy-cpi-title { font-size: 26px; font-weight: 900; color: #052e16; margin-bottom: 16px; letter-spacing: -0.02em; }
     .tapjoy-cpi-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .tapjoy-cpi-list li { font-size: 13.5px; color: rgba(255,255,255,0.72); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-    .tapjoy-cpi-list li::before { content: '✓'; color: #f472b6; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
-    .tapjoy-cpi-year { width: 92px; height: 92px; border-radius: 50%; border: 2px solid rgba(244,114,182,0.3); background: rgba(244,114,182,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; color: #f472b6; font-size: 22px; font-weight: 900; line-height: 1; }
-    .tapjoy-cpi-year span { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: rgba(244,114,182,0.65); display: block; margin-top: 3px; }
+    .tapjoy-cpi-list li { font-size: 13.5px; color: #374151; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+    .tapjoy-cpi-list li::before { content: '✓'; color: #059669; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+    .tapjoy-cpi-year { width: 92px; height: 92px; border-radius: 50%; border: 2px solid rgba(5,150,105,0.3); background: rgba(5,150,105,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; color: #059669; font-size: 22px; font-weight: 900; line-height: 1; }
+    .tapjoy-cpi-year span { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: rgba(5,150,105,0.65); display: block; margin-top: 3px; }
 
     @media (max-width: 680px) {
       .tapjoy-types-grid { grid-template-columns: 1fr; }
@@ -1446,16 +1448,16 @@
         </a>
 
         <!-- 07 — Developer Tools: full-width compact row -->
-        <a class="glance-card gc-wide" href="#devtools" style="--gc-grad:linear-gradient(90deg,#4f46e5,#818cf8);background:linear-gradient(135deg,#1e3a8a,#1d4ed8,#1e40af);">
+        <a class="glance-card gc-wide" href="#devtools" style="--gc-grad:linear-gradient(90deg,#059669,#22c55e);background:linear-gradient(135deg,#f0fdf4,#ecfdf5);">
           <div class="gc-body">
             <div class="gc-top">
-              <span class="gc-num" style="color:rgba(255,255,255,0.4);">07</span>
-              <span class="glance-tag" style="background:rgba(99,102,241,0.2);color:#818cf8;">Open Beta</span>
+              <span class="gc-num" style="color:rgba(5,150,105,0.55);">07</span>
+              <span class="glance-tag" style="background:rgba(5,150,105,0.12);color:#059669;">Open Beta</span>
             </div>
-            <div class="gc-title" style="color:#fff;">Unity AI Tutorial Series</div>
-            <div class="gc-desc" style="color:rgba(255,255,255,0.55);">AI Assistant &amp; MCP in the Unity Editor — speed up your game development workflow.</div>
+            <div class="gc-title" style="color:#052e16;">Unity AI Tutorial Series</div>
+            <div class="gc-desc" style="color:#374151;">AI Assistant &amp; MCP in the Unity Editor — speed up your game development workflow.</div>
           </div>
-          <div class="gc-arr" style="color:rgba(255,255,255,0.4);">&rarr;</div>
+          <div class="gc-arr" style="color:rgba(5,150,105,0.5);">&rarr;</div>
         </a>
 
         <!-- 08 — Tapjoy Offerwall: featured full-width with side pills -->
