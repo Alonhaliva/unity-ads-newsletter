@@ -771,6 +771,22 @@
     }
     .roas-accent { color: #0ea5e9; }
 
+    /* ─── VECTOR CPE SECTION ─── */
+    #cpe { background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%); }
+    .cpe-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cpe-type-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 22px; position: relative; overflow: hidden; }
+    .cpe-type-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #22c55e; }
+    .cpe-type-card.cpe-payer::before { background: #3b82f6; }
+    .cpe-type-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; margin-bottom: 14px; }
+    .cpe-type-name { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .cpe-type-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+    .cpe-type-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .cpe-type-card.cpe-payer .cpe-type-tag { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
+    .cpe-type-note { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); background: #f9fafb; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; line-height: 1.5; }
+    .cpe-docs-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 14px; font-weight: 700; color: #059669; text-decoration: none; border-bottom: 2px solid rgba(5,150,105,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
+    .cpe-docs-btn:hover { border-color: #059669; }
+    @media (max-width: 900px) { #cpe { padding: 60px 28px !important; } .cpe-type-grid { grid-template-columns: 1fr; } }
+
     /* ─── DASHBOARD SECTION ─── */
     #dashboard { background: #fff; }
     .dash-accent { color: #312e81; }
@@ -1198,12 +1214,13 @@
   <div id="chapter-pills">
     <div class="pill" data-target="d28">1 D28</div>
     <div class="pill" data-target="roas">2 ROAS</div>
-    <div class="pill" data-target="dashboard">3 Dashboard</div>
-    <div class="pill" data-target="sdk">4 SDK</div>
-    <div class="pill" data-target="data">5 Data</div>
-    <div class="pill" data-target="devtools">6 Dev Tools</div>
-    <div class="pill" data-target="tapjoy">7 Tapjoy</div>
-    <div class="pill" data-target="roadmap">8 Roadmap</div>
+    <div class="pill" data-target="cpe">3 CPE</div>
+    <div class="pill" data-target="dashboard">4 Dashboard</div>
+    <div class="pill" data-target="sdk">5 SDK</div>
+    <div class="pill" data-target="data">6 Data</div>
+    <div class="pill" data-target="devtools">7 Dev Tools</div>
+    <div class="pill" data-target="tapjoy">8 Tapjoy</div>
+    <div class="pill" data-target="roadmap">9 Roadmap</div>
   </div>
 </div>
 
@@ -1239,35 +1256,40 @@
         <span class="nav-label">Faster ROAS</span>
         <span class="nav-num">02</span>
       </a>
+      <a href="#cpe" class="nav-item" data-section="cpe">
+        <div class="nav-dot"></div>
+        <span class="nav-label">Vector CPE</span>
+        <span class="nav-num">03</span>
+      </a>
       <a href="#dashboard" class="nav-item" data-section="dashboard">
         <div class="nav-dot"></div>
         <span class="nav-label">Dashboard</span>
-        <span class="nav-num">03</span>
+        <span class="nav-num">04</span>
       </a>
       <a href="#sdk" class="nav-item" data-section="sdk">
         <div class="nav-dot"></div>
         <span class="nav-label">SDK 4.18+</span>
-        <span class="nav-num">04</span>
+        <span class="nav-num">05</span>
       </a>
       <a href="#data" class="nav-item" data-section="data">
         <div class="nav-dot"></div>
         <span class="nav-label">Data signals</span>
-        <span class="nav-num">05</span>
+        <span class="nav-num">06</span>
       </a>
       <a href="#devtools" class="nav-item" data-section="devtools">
         <div class="nav-dot"></div>
         <span class="nav-label">Dev Tools</span>
-        <span class="nav-num">06</span>
+        <span class="nav-num">07</span>
       </a>
       <a href="#tapjoy" class="nav-item" data-section="tapjoy">
         <div class="nav-dot"></div>
         <span class="nav-label">Tapjoy Offerwall</span>
-        <span class="nav-num">07</span>
+        <span class="nav-num">08</span>
       </a>
       <a href="#roadmap" class="nav-item" data-section="roadmap">
         <div class="nav-dot"></div>
         <span class="nav-label">Roadmap</span>
-        <span class="nav-num">08</span>
+        <span class="nav-num">09</span>
       </a>
     </div>
   </nav>
@@ -1379,10 +1401,21 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 03 — Dashboard -->
-        <a class="glance-card" href="#dashboard" style="--gc-grad:linear-gradient(90deg,#312e81,#6366f1);">
+        <!-- 03 — Vector CPE -->
+        <a class="glance-card" href="#cpe" style="--gc-grad:linear-gradient(90deg,#059669,#22c55e);">
           <div class="gc-top">
             <span class="gc-num">03</span>
+            <span class="glance-tag tag-live">Live Today</span>
+          </div>
+          <div class="gc-title">Vector CPE — Live</div>
+          <div class="gc-desc">CPE Retention &amp; CPE Payer: two new campaign types to optimize beyond ROAS.</div>
+          <div class="gc-arr">&rarr;</div>
+        </a>
+
+        <!-- 04 — Dashboard -->
+        <a class="glance-card" href="#dashboard" style="--gc-grad:linear-gradient(90deg,#312e81,#6366f1);">
+          <div class="gc-top">
+            <span class="gc-num">04</span>
             <span class="glance-tag tag-live">Live &middot; May 19</span>
           </div>
           <div class="gc-title">A cleaner dashboard</div>
@@ -1390,10 +1423,10 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 04 — SDK -->
+        <!-- 05 — SDK -->
         <a class="glance-card" href="#sdk" style="--gc-grad:linear-gradient(90deg,#15803d,#22c55e);">
           <div class="gc-top">
-            <span class="gc-num">04</span>
+            <span class="gc-num">05</span>
             <span class="glance-tag tag-live">Update</span>
           </div>
           <div class="gc-title">SDK 4.18+</div>
@@ -1401,10 +1434,10 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 05 — Data Signals -->
+        <!-- 06 — Data Signals -->
         <a class="glance-card" href="#data" style="--gc-grad:linear-gradient(90deg,#2563eb,#7b2ff7);">
           <div class="gc-top">
-            <span class="gc-num">05</span>
+            <span class="gc-num">06</span>
             <span class="glance-tag tag-live">New links</span>
           </div>
           <div class="gc-title">Strengthen your data</div>
@@ -1412,11 +1445,11 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 06 — Developer Tools: full-width compact row -->
+        <!-- 07 — Developer Tools: full-width compact row -->
         <a class="glance-card gc-wide" href="#devtools" style="--gc-grad:linear-gradient(90deg,#4f46e5,#818cf8);background:linear-gradient(135deg,#1e3a8a,#1d4ed8,#1e40af);">
           <div class="gc-body">
             <div class="gc-top">
-              <span class="gc-num" style="color:rgba(255,255,255,0.4);">06</span>
+              <span class="gc-num" style="color:rgba(255,255,255,0.4);">07</span>
               <span class="glance-tag" style="background:rgba(99,102,241,0.2);color:#818cf8;">Open Beta</span>
             </div>
             <div class="gc-title" style="color:#fff;">Unity AI Tutorial Series</div>
@@ -1425,11 +1458,11 @@
           <div class="gc-arr" style="color:rgba(255,255,255,0.4);">&rarr;</div>
         </a>
 
-        <!-- 07 — Tapjoy Offerwall: featured full-width with side pills -->
+        <!-- 08 — Tapjoy Offerwall: featured full-width with side pills -->
         <a class="glance-card gc-tapjoy" href="#tapjoy" style="--gc-grad:linear-gradient(90deg,#f72f9e,#7b2ff7);">
           <div class="gc-body">
             <div class="gc-top">
-              <span class="gc-num">07</span>
+              <span class="gc-num">08</span>
               <span class="glance-tag" style="background:rgba(247,47,158,0.12);color:#f72f9e;">New</span>
             </div>
             <div class="gc-title">Tapjoy Offerwall</div>
@@ -1443,15 +1476,15 @@
           <div class="gc-arr">&rarr;</div>
         </a>
 
-        <!-- 08 — Roadmap: full-width compact row -->
+        <!-- 09 — Roadmap: full-width compact row -->
         <a class="glance-card gc-wide" href="#roadmap" style="--gc-grad:linear-gradient(90deg,#c026d3,#f72f9e);">
           <div class="gc-body">
             <div class="gc-top">
-              <span class="gc-num">08</span>
+              <span class="gc-num">09</span>
               <span class="glance-tag tag-soon">Roadmap</span>
             </div>
             <div class="gc-title">Coming next</div>
-            <div class="gc-desc">CPE Retention &amp; Payer campaigns, Custom-Event optimization, and a more agentic Vector.</div>
+            <div class="gc-desc">CPE Custom-Event optimization, and a more agentic Vector.</div>
           </div>
           <div class="gc-arr">&rarr;</div>
         </a>
@@ -1724,21 +1757,11 @@
           </div>
         </div>
 
-        <!-- Stage 3: case studies + notes -->
+        <!-- Stage 3: notes -->
         <div class="scrolly-stage" data-stage="d28-cases">
-          <p class="section-body fade-up">A couple of real examples:</p>
-          <div class="case-study-card" id="cs-homa">
-            <div class="cs-name"><a href="https://unity.com/resources/homa">Homa</a></div>
-            <div class="cs-metrics">+14% D28 ARPU &nbsp;&middot;&nbsp; +63% D28 retention &nbsp;&middot;&nbsp; ~3&times; scale running D28 alongside D7</div>
-          </div>
-          <div class="case-study-card" id="cs-playrix">
-            <div class="cs-name"><a href="https://unity.com/resources/playrix_vector" style="border-bottom-color:var(--pink);">Playrix</a></div>
-            <div class="cs-metrics">+89% scale &nbsp;&middot;&nbsp; +41% long-term retention &nbsp;&middot;&nbsp; 2.4&times; higher ARPU on iOS vs standard D7</div>
-          </div>
-          <div class="note-box fade-up d2">
+          <div class="note-box fade-up">
             <p><strong style="color:#6b5900;">One thing to remember:</strong> D28 runs <em>alongside</em> D7, not instead of it. Launch D7 first, let it pass Learning, then spin up D28 in the same geo so it skips Learning and optimizes from day one.</p>
           </div>
-          <a href="#" class="text-link fade-up d3">Read the full D28 playbook &rarr;</a>
         </div>
       </div>
     </div>
@@ -1804,9 +1827,42 @@
       </div>
     </section>
 
-    <!-- ═══ 3. DASHBOARD ═══ -->
+    <!-- ═══ 3. VECTOR CPE ═══ -->
+    <section id="cpe" class="section" style="padding:80px 60px;border-top:1px solid var(--border);">
+      <div class="section-num fade-up" style="color:#059669;">03 — Vector CPE</div>
+      <h2 class="section-heading fade-up d2">Two new ways to optimize beyond ROAS</h2>
+      <div class="section-art-grid">
+        <div class="section-art-text">
+          <p class="section-body fade-up d2">
+            <strong>Vector-powered CPE is here.</strong> Two new campaign types now available on Unity Ads — giving advertisers two more ways to optimize toward D7 outcomes beyond ROAS.
+            Both are designed to run <em>alongside</em> your existing ROAS campaigns to build a more diversified UA portfolio.
+          </p>
+          <p class="section-body fade-up d3">
+            Set your Target Cost Per Event, and Unity Vector dynamically optimizes bids toward users most likely to complete that event — same engine, different signal.
+          </p>
+          <a href="https://docs.unity.com/en-us/user-acquisition/campaigns/event/event-optimization-campaigns?utm_source=grow&utm_medium=social" target="_blank" rel="noopener" class="cpe-docs-btn fade-up d4">Read the docs &rarr;</a>
+        </div>
+        <div class="cpe-type-grid fade-up d3">
+          <div class="cpe-type-card">
+            <div class="cpe-type-icon" style="background:#d1fae5;color:#059669;font-size:20px;">D7</div>
+            <div class="cpe-type-name">CPE Retention</div>
+            <div class="cpe-type-desc">Acquires users predicted to remain active on Day 7 — optimize for stickiness, not just installs.</div>
+            <span class="cpe-type-tag">Active users</span>
+          </div>
+          <div class="cpe-type-card cpe-payer">
+            <div class="cpe-type-icon" style="background:#dbeafe;color:#1d4ed8;font-size:20px;">$</div>
+            <div class="cpe-type-name">CPE Payer</div>
+            <div class="cpe-type-desc">Acquires users likely to make their first purchase within 7 days — target payers before they pay.</div>
+            <span class="cpe-type-tag">First purchase</span>
+          </div>
+          <div class="cpe-type-note">Both campaign types reach user segments that ROAS alone doesn&rsquo;t capture — running them together builds a fuller, more resilient UA mix.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 4. DASHBOARD ═══ -->
     <section id="dashboard" class="section" style="padding-left:60px;padding-right:60px;padding-top:80px;padding-bottom:80px;background:#fff;border-top:1px solid var(--border);">
-      <div class="section-num fade-up dash-accent">03 — Dashboard</div>
+      <div class="section-num fade-up dash-accent">04 — Dashboard</div>
       <h2 class="section-heading fade-up d2">A cleaner, more connected dashboard</h2>
       <div class="section-art-grid">
         <div class="section-art-text">
@@ -1936,7 +1992,7 @@
       <!-- RIGHT: scrolling stages -->
       <div class="scrolly-content">
         <div class="scrolly-stage" data-stage="sdk-intro">
-          <div class="section-num fade-up" style="color:#15803d;">04 — SDK 4.18+</div>
+          <div class="section-num fade-up" style="color:#15803d;">05 — SDK 4.18+</div>
           <h2 class="section-heading fade-up d2" style="color:#1a1a2e;">A faster, steadier SDK</h2>
           <p class="section-body fade-up d3">
             It&rsquo;s easy to treat an SDK update as routine maintenance. This one isn&rsquo;t. The latest Unity Ads SDK <strong>(4.18+)</strong> starts faster, delivers more reliably, and feeds cleaner runtime signals into optimization &mdash; which means less drop-off between load and show, and fewer opportunities lost before the auction even begins.
@@ -1977,7 +2033,7 @@
 
     <!-- ═══ 5. DATA ACTIVATION ═══ -->
     <section id="data" style="padding:80px 60px;background:linear-gradient(135deg,#f6f1fd 0%,#eef2fd 100%);">
-      <div class="section-num fade-up" style="color:#7b2ff7;">05 — Data Activation</div>
+      <div class="section-num fade-up" style="color:#7b2ff7;">06 — Data Activation</div>
       <h2 class="section-heading fade-up d2" style="color:#1a1a2e;margin-bottom:16px;">Fewer blind spots, smarter optimization</h2>
       <div class="art-reveal" style="margin-bottom:32px;">
         <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scattered signals connecting into Vector" style="width:100%;height:auto;border-radius:18px;max-width:540px;">
@@ -2027,7 +2083,7 @@
 
     <!-- ═══ 6. DEVELOPER TOOLS ═══ -->
     <section id="devtools">
-      <div class="section-num fade-up" style="color:#818cf8;">06 — Developer Tools</div>
+      <div class="section-num fade-up" style="color:#818cf8;">07 — Developer Tools</div>
       <div class="devtools-grid">
         <div class="fade-up d2">
           <div class="devtools-kicker">Unity AI Open Beta</div>
@@ -2092,7 +2148,7 @@
 
     <!-- ═══ 7. TAPJOY OFFERWALL ═══ -->
     <section id="tapjoy" style="padding:80px 60px;background:linear-gradient(180deg,#fff5fe 0%,#fff 50%);border-top:1px solid var(--border);">
-      <div class="section-num fade-up" style="color:#f72f9e;">07 — Tapjoy Offerwall</div>
+      <div class="section-num fade-up" style="color:#f72f9e;">08 — Tapjoy Offerwall</div>
       <h2 class="section-heading fade-up d2">Deep engagement,<br>rewarded</h2>
       <p class="section-body fade-up" style="color:#3a3a4e;margin-top:24px;max-width:660px;">The Tapjoy Offerwall connects your game to users who earn real in-app rewards by playing — not just installing. Multi Reward and Daily Rewards are live today, driving quality installs that go well beyond the first session.</p>
 
@@ -2556,7 +2612,7 @@
 
     <!-- ═══ 7. ROADMAP ═══ -->
     <section id="roadmap" style="padding:80px 60px;background:#fff;border-top:1px solid var(--border);">
-      <div class="section-num fade-up" style="color:var(--pink);">08 — Roadmap</div>
+      <div class="section-num fade-up" style="color:var(--pink);">09 — Roadmap</div>
       <h2 class="section-heading fade-up d2">What&rsquo;s coming next</h2>
       <div class="art-reveal" style="margin-bottom:36px;">
         <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A winding road with Q2, Q3 and H2 milestones" style="width:100%;height:auto;border-radius:18px;max-width:600px;">
@@ -2585,9 +2641,9 @@
         <div class="roadmap-item">
           <div class="roadmap-dot">Q2</div>
           <div class="roadmap-body">
-            <div class="roadmap-q">Q2 / June</div>
+            <div class="roadmap-q" style="color:#059669;font-weight:800;">&#10003; Live Now</div>
             <div class="roadmap-title">CPE Retention &amp; CPE Payer</div>
-            <div class="roadmap-desc">Optimize toward specific in-game events that signal LTV: users likely to stick around, or likely to pay. For when ROAS isn&rsquo;t the only thing you care about.</div>
+            <div class="roadmap-desc">Now live — two Vector-powered campaign types to optimize toward D7 outcomes beyond ROAS. <a href="#cpe" style="color:#059669;font-weight:700;">See section 03 &rarr;</a></div>
           </div>
         </div>
         <div class="roadmap-item">
@@ -2656,7 +2712,7 @@
   }
 
   // ─── ACTIVE SECTION (rail + pills) ───
-  var sections = ['hero','glance','d28','roas','dashboard','sdk','data','devtools','tapjoy','roadmap'];
+  var sections = ['hero','glance','d28','roas','cpe','dashboard','sdk','data','devtools','tapjoy','roadmap'];
   var navItems = document.querySelectorAll('.nav-item[data-section]');
   var pills = document.querySelectorAll('.pill[data-target]');
 
