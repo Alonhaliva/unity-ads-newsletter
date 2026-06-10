@@ -775,17 +775,20 @@
 
     /* ─── VECTOR CPE SECTION ─── */
     #cpe { background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%); }
-    .cpe-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .cpe-type-card { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 24px 22px; position: relative; overflow: hidden; }
-    .cpe-type-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: #22c55e; }
+    .cpe-intro { max-width: 640px; }
+    .cpe-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; margin-bottom: 28px; }
+    .cpe-type-card { background: #fff; border: 1.5px solid #d1fae5; border-radius: 18px; padding: 28px 28px; position: relative; overflow: hidden; }
+    .cpe-type-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: #22c55e; }
     .cpe-type-card.cpe-payer::before { background: #3b82f6; }
-    .cpe-type-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 900; margin-bottom: 14px; }
-    .cpe-type-name { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
-    .cpe-type-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
-    .cpe-type-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .cpe-type-card.cpe-payer { border-color: #bfdbfe; }
+    .cpe-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+    .cpe-type-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; flex-shrink: 0; }
+    .cpe-type-name { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .cpe-type-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .cpe-type-tag { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
     .cpe-type-card.cpe-payer .cpe-type-tag { background: #eff6ff; color: #1d4ed8; border-color: #bfdbfe; }
-    .cpe-type-note { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); background: #f9fafb; border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; line-height: 1.5; }
-    .cpe-docs-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 14px; font-weight: 700; color: #059669; text-decoration: none; border-bottom: 2px solid rgba(5,150,105,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
+    .cpe-type-note { grid-column: 1 / -1; font-size: 13px; color: var(--muted); background: #f9fafb; border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; line-height: 1.6; }
+    .cpe-docs-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #059669; text-decoration: none; border-bottom: 2px solid rgba(5,150,105,0.3); padding-bottom: 2px; transition: border-color 0.2s; }
     .cpe-docs-btn:hover { border-color: #059669; }
     @media (max-width: 900px) { #cpe { padding: 60px 28px !important; } .cpe-type-grid { grid-template-columns: 1fr; } }
 
@@ -1833,33 +1836,39 @@
     <section id="cpe" class="section" style="padding:80px 60px;border-top:1px solid var(--border);">
       <div class="section-num fade-up" style="color:#059669;">03 — Vector CPE</div>
       <h2 class="section-heading fade-up d2">Two new ways to optimize beyond ROAS</h2>
-      <div class="section-art-grid">
-        <div class="section-art-text">
-          <p class="section-body fade-up d2">
-            <strong>Vector-powered CPE is here.</strong> Two new campaign types now available on Unity Ads — giving advertisers two more ways to optimize toward D7 outcomes beyond ROAS.
-            Both are designed to run <em>alongside</em> your existing ROAS campaigns to build a more diversified UA portfolio.
-          </p>
-          <p class="section-body fade-up d3">
-            Set your Target Cost Per Event, and Unity Vector dynamically optimizes bids toward users most likely to complete that event — same engine, different signal.
-          </p>
-          <a href="https://docs.unity.com/en-us/user-acquisition/campaigns/event/event-optimization-campaigns?utm_source=grow&utm_medium=social" target="_blank" rel="noopener" class="cpe-docs-btn fade-up d4">Read the docs &rarr;</a>
-        </div>
-        <div class="cpe-type-grid fade-up d3">
-          <div class="cpe-type-card">
-            <div class="cpe-type-icon" style="background:#d1fae5;color:#059669;font-size:20px;">D7</div>
-            <div class="cpe-type-name">CPE Retention</div>
-            <div class="cpe-type-desc">Acquires users predicted to remain active on Day 7 — optimize for stickiness, not just installs.</div>
-            <span class="cpe-type-tag">Active users</span>
-          </div>
-          <div class="cpe-type-card cpe-payer">
-            <div class="cpe-type-icon" style="background:#dbeafe;color:#1d4ed8;font-size:20px;">$</div>
-            <div class="cpe-type-name">CPE Payer</div>
-            <div class="cpe-type-desc">Acquires users likely to make their first purchase within 7 days — target payers before they pay.</div>
-            <span class="cpe-type-tag">First purchase</span>
-          </div>
-          <div class="cpe-type-note">Both campaign types reach user segments that ROAS alone doesn&rsquo;t capture — running them together builds a fuller, more resilient UA mix.</div>
-        </div>
+      <div class="cpe-intro">
+        <p class="section-body fade-up d2">
+          <strong>Vector-powered CPE is here.</strong> Two new campaign types now available on Unity Ads — giving advertisers two more ways to optimize toward D7 outcomes beyond ROAS.
+          Both are designed to run <em>alongside</em> your existing ROAS campaigns to build a more diversified UA portfolio.
+        </p>
+        <p class="section-body fade-up d3">
+          Set your Target Cost Per Event, and Unity Vector dynamically optimizes bids toward users most likely to complete that event — same engine, different signal.
+        </p>
       </div>
+      <div class="cpe-type-grid fade-up d3">
+        <div class="cpe-type-card">
+          <div class="cpe-card-header">
+            <div class="cpe-type-icon" style="background:#d1fae5;color:#059669;">D7</div>
+            <div>
+              <div class="cpe-type-name">CPE Retention</div>
+              <span class="cpe-type-tag">Active users</span>
+            </div>
+          </div>
+          <div class="cpe-type-desc">Acquires users predicted to remain active on Day 7 — optimize for stickiness, not just installs.</div>
+        </div>
+        <div class="cpe-type-card cpe-payer">
+          <div class="cpe-card-header">
+            <div class="cpe-type-icon" style="background:#dbeafe;color:#1d4ed8;">$</div>
+            <div>
+              <div class="cpe-type-name">CPE Payer</div>
+              <span class="cpe-type-tag">First purchase</span>
+            </div>
+          </div>
+          <div class="cpe-type-desc">Acquires users likely to make their first purchase within 7 days — target payers before they pay.</div>
+        </div>
+        <div class="cpe-type-note">Both campaign types reach user segments that ROAS alone doesn&rsquo;t capture — running them together builds a fuller, more resilient UA mix.</div>
+      </div>
+      <a href="https://docs.unity.com/en-us/user-acquisition/campaigns/event/event-optimization-campaigns?utm_source=grow&utm_medium=social" target="_blank" rel="noopener" class="cpe-docs-btn fade-up d4">Read the docs &rarr;</a>
     </section>
 
     <!-- ═══ 4. DASHBOARD ═══ -->
